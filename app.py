@@ -10,24 +10,32 @@ st.set_page_config(
 
 inject_style()
 
+PAGES = [
+    "Home",
+    "Project Overview",
+    "Business Problem",
+    "Data",
+    "Interactive Dashboard",
+    "Team Members",
+    "Resources",
+]
+
+if "nav_page" not in st.session_state:
+    st.session_state.nav_page = "Home"
+
 with st.sidebar:
     st.title("Project portal")
-    selected_section = st.radio(
-        "Navigation",
-        [
-            "Home",
-            "Project Overview",
-            "Business Problem",
-            "Data",
-            "Interactive Dashboard",
-            "Team Members",
-            "Resources",
-        ],
-    )
+    page_choice = st.radio("Navigation", PAGES, index=PAGES.index(st.session_state.nav_page))
+    st.session_state.nav_page = page_choice
     st.markdown("---")
     st.markdown(
         "**Project navigation**\n- Project Overview\n- Business Problem\n- Data\n- Dashboard\n- Team pages"
     )
+
+if st.session_state.nav_page != "Home":
+    st.markdown(f"### {st.session_state.nav_page}")
+    st.write("This section is a placeholder. Use the built-in pages or update the project content here.")
+    st.stop()
 
 page_header(
     "A Visual Study of E-Commerce Orders, Delivery & Customer Satisfaction",
