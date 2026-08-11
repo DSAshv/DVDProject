@@ -11,7 +11,7 @@ st.write(
 
 for idx in range(1, 4):
     st.markdown(
-        """
+        f"""
         <div class='card'>
             <strong>Finding {idx}</strong>
             <p>Evidence: Placeholder</p>

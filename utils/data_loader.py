@@ -1,8 +1,14 @@
 import os
+import glob
 import pandas as pd
 
 BASE_DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Dataset')
-DATA_SOURCE_DIR = os.path.join(BASE_DATA_DIR, 'E-Commerce Dataset ')
+
+candidate = glob.glob(os.path.join(BASE_DATA_DIR, 'E-Commerce Dataset*'))
+if candidate:
+    DATA_SOURCE_DIR = candidate[0]
+else:
+    DATA_SOURCE_DIR = os.path.join(BASE_DATA_DIR, 'E-Commerce Dataset')
 
 DATA_FILES = {
     'customers': 'customers_dataset.csv',
