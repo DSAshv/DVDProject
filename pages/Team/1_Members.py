@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.ui import section_header
 
-st.set_page_config(page_title="Team Members")
+st.set_page_config(page_title="Team Members", initial_sidebar_state="expanded")
 
 section_header("Team Members")
 

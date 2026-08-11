@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.ui import section_header
 
-st.set_page_config(page_title="Recommendations")
+st.set_page_config(page_title="Recommendations", initial_sidebar_state="expanded")
 
 section_header("Recommendations")
 

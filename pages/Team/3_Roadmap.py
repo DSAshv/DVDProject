@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.ui import section_header
 
-st.set_page_config(page_title="3-Week Roadmap")
+st.set_page_config(page_title="3-Week Roadmap", initial_sidebar_state="expanded")
 
 section_header("3-Week Roadmap")
 

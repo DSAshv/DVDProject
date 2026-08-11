@@ -2,7 +2,7 @@ import streamlit as st
 from utils.ui import section_header
 from utils.data_loader import load_all_metadata
 
-st.set_page_config(page_title="Data")
+st.set_page_config(page_title="Data", initial_sidebar_state="expanded")
 
 section_header("Data")
 

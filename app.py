@@ -5,6 +5,7 @@ st.set_page_config(
     page_title="E-Commerce Visualization Portal",
     page_icon="📊",
     layout="wide",
+    initial_sidebar_state="expanded",
 )
 
 inject_style()

@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.ui import section_header
 
-st.set_page_config(page_title="Resources")
+st.set_page_config(page_title="Resources", initial_sidebar_state="expanded")
 
 section_header("Resources")
 

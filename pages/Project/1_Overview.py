@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.ui import section_header
 
-st.set_page_config(page_title="Project Overview")
+st.set_page_config(page_title="Project Overview", initial_sidebar_state="expanded")
 
 section_header("Project Overview")
 st.write(

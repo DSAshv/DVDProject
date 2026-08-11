@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.ui import section_header
 
-st.set_page_config(page_title="Visualization Story")
+st.set_page_config(page_title="Visualization Story", initial_sidebar_state="expanded")
 
 section_header("Visualization Story")
 

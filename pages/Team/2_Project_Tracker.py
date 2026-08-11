@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.ui import section_header
 
-st.set_page_config(page_title="Project Tracker")
+st.set_page_config(page_title="Project Tracker", initial_sidebar_state="expanded")
 
 section_header("Project Tracker")
 col1, col2, col3 = st.columns(3)
