@@ -6,19 +6,9 @@ st.set_page_config(page_title="Interactive Dashboard", initial_sidebar_state="ex
 section_header("Interactive Dashboard")
 
 st.write(
-    "This page is designed to house the consolidated KPI view and interactive charts for orders, delivery, product categories, seller risk, regions, and customer ratings."
+    "This page is reserved for the future interactive analytics dashboard. It will host KPI summaries, delivery performance metrics, product and region views, and customer satisfaction analysis once the data is fully prepared."
 )
 
-st.markdown(
-    """
-    - KPI overview
-    - Orders and sales
-    - Delivery performance
-    - Product category performance
-    - Seller performance and risk
-    - Region and satisfaction heatmaps
-    - Customer rating distribution
-    """
+st.warning(
+    "Dashboard components are temporarily paused until the data integration and visualization stage is complete."
 )
-
-st.info("Interactive dashboard components will be added after the data integration and analysis steps are complete.")
