@@ -14,91 +14,40 @@ def render_home():
 
     st.divider()
 
-    st.subheader("What We Will Do")
-
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        st.markdown("""
-        #### 🔍 Explore
-        - Understand the e-commerce datasets
-        - Study orders, products, sellers and customers
-        - Identify missing values and data-quality issues
-        """)
-
-    with col2:
-        st.markdown("""
-        #### 📊 Analyse
-        - Analyse delivery and order performance
-        - Compare customer satisfaction across segments
-        - Identify patterns behind low and high ratings
-        """)
-
-    with col3:
-        st.markdown("""
-        #### 💡 Explain
-        - Build explanatory visualizations
-        - Identify marketplace risks
-        - Translate findings into actionable recommendations
-        """)
-
-    st.divider()
-
-    st.subheader("Key Questions We Aim to Answer")
-
-    questions = [
-        "Which product categories receive the highest and lowest customer ratings?",
-        "How strongly does delivery performance affect customer satisfaction?",
-        "Which seller behaviours are associated with poor customer experiences?",
-        "Are certain regions or geographic patterns associated with delivery problems?",
-        "Which parts of the order journey create the greatest risk of a one-star review?",
-        "Where should the marketplace invest or intervene to improve customer experience?"
-    ]
-
-    for question in questions:
-        st.markdown(f"• {question}")
-
-    st.divider()
 
     st.subheader("Project Deliverables")
+    st.subheader("1. E-Commerce Analytics Project")
 
-    col1, col2, col3 = st.columns(3)
+    st.markdown(
+        """
+    - [ ] Build an end-to-end e-commerce analytics project
+        - [ ] Create an interactive dashboard to explore customer satisfaction and marketplace risk
+        - [ ] Analyze category, seller, region, and delivery-performance drivers
+        - [ ] Identify actionable business insights for marketplace improvement
+    """
+    )
 
-    with col1:
-        st.markdown("""
-        ### 📈 Interactive Dashboard
-        Explore customer satisfaction and marketplace risk by:
+    st.subheader("2. Final Presentation")
 
-        - Category
-        - Seller
-        - Region
-        - Delivery performance
-        """)
+    st.markdown(
+        """
+    - [ ] Prepare the final presentation
+        - [ ] Explain the business problem and analytical approach
+        - [ ] Present key findings and business implications
+        - [ ] Recommend next steps and actions
+    """
+    )
 
-    with col2:
-        st.markdown("""
-        ### 🎤 Final Presentation
-        A focused story covering:
+    st.subheader("3. Technical Report")
 
-        - Business problem
-        - Analytical approach
-        - Key findings
-        - Business implications
-        - Recommended actions
-        """)
-
-    with col3:
-        st.markdown("""
-        ### 📄 Technical Report
-        Complete documentation covering:
-
-        - Data preparation
-        - Exploratory analysis
-        - Visualizations
-        - Insights
-        - Recommendations
-        - Reproducible code
-        """)
+    st.markdown(
+        """
+    - [ ] Deliver the technical report
+        - [ ] Document data preparation and exploratory analysis
+        - [ ] Summarize visualizations, insights, and recommendations
+        - [ ] Include reproducible code and methodology
+    """
+    )
 
     st.divider()
 
