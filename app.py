@@ -8,7 +8,7 @@ from business_goal import render_business_goal_tab
 
 def main():
     st.set_page_config(
-        page_title="E-Commerce Project Portal",
+        page_title="DVD Project Portal For Team 2",
         layout="wide"
     )
 
@@ -23,7 +23,7 @@ def main():
         unsafe_allow_html=True,
     )
 
-    st.title("E-Commerce Analysis — Project Portal")
+    st.title("DVD Project Portal For Team 2")
 
     tabs = st.tabs([
         "Home",

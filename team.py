@@ -836,7 +836,7 @@ def render_team_tab():
         <!-- ================= TEAM ================= -->
 
         <div class="team-title">
-            <h1>Our Team 2</h1>
+            <h1>Team #2</h1>
             <p>Project Group 2 · IIT Madras BS in Data Science</p>
             <span class="team-count">● 5 Members</span>
         </div>
