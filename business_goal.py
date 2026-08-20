@@ -225,6 +225,13 @@ def render_business_goal_tab():
         <div class="question-grid">
 
             <div class="question-card">
+                <div class="question-text">
+                    <a href="https://claude.ai/code/artifact/441d83fb-d88a-4d77-a663-4cdd2f0f886e" target="_blank">https://claude.ai/code/artifact/441d83fb-d88a-4d77-a663-4cdd2f0f886e</a>
+                </div>
+                
+            </div>
+
+            <div class="question-card">
                 <div class="question-number">Q1 · P1</div>
                 <div class="question-text">
                     How strongly does delivery lateness predict a bad review,

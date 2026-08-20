@@ -1,0 +1,212 @@
+[
+    {
+        "id": 1,
+        "week": "Kickoff",
+        "week_title": "Kick off",
+        "task": "Kick off meeting",
+        "deadline": "09th Aug",
+        "assignees": [
+            "All members"
+        ],
+        "status": "Completed"
+    },
+    {
+        "id": 2,
+        "week": "Week 1",
+        "week_title": "Data Exploration, Cleaning & Initial Insights",
+        "task": "Understand the dataset, its structure, and key variables using the data dictionary",
+        "deadline": "10th Aug",
+        "assignees": [
+            "Sahib",
+            "Yash",
+            "Kannan",
+            "Ashwanth V",
+            "Anushka"
+        ],
+        "status": "Completed"
+    },
+    {
+        "id": 3,
+        "week": "Week 1",
+        "week_title": "Data Exploration, Cleaning & Initial Insights",
+        "task": "Rewrite the business goal in your own words and list the questions your analysis will answer.",
+        "deadline": "10th Aug",
+        "assignees": [
+            "Sahib",
+            "Yash",
+            "Kannan",
+            "Ashwanth V",
+            "Anushka"
+        ],
+        "status": "In Progress"
+    },
+    {
+        "id": 4,
+        "week": "Week 1",
+        "week_title": "Data Exploration, Cleaning & Initial Insights",
+        "task": "Perform early exploratory checks to study borrower profiles and default proportions.",
+        "deadline": "12th Aug",
+        "assignees": [
+            "Yash",
+            "Anushka"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 5,
+        "week": "Week 1",
+        "week_title": "Data Exploration, Cleaning & Initial Insights",
+        "task": "Identify missing values, outliers, and data quality concerns.",
+        "deadline": "12th Aug",
+        "assignees": [
+            "Kannan",
+            "Ashwanth V"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 6,
+        "week": "Week 1",
+        "week_title": "Data Exploration, Cleaning & Initial Insights",
+        "task": "Create a short Concept Note summarizing your plan and initial observations.",
+        "deadline": "15th Aug",
+        "assignees": [
+            "Sahib"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 7,
+        "week": "Week 2",
+        "week_title": "Visualization & Comparative Analysis",
+        "task": "Clean and preprocess the data, handle missing values, and resolve inconsistencies.",
+        "deadline": "18th Aug",
+        "assignees": [
+            "Kannan",
+            "Ashwanth V"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 8,
+        "week": "Week 2",
+        "week_title": "Visualization & Comparative Analysis",
+        "task": "Merge current and previous application files where required.",
+        "deadline": "To be clarified",
+        "assignees": [
+            "Pending"
+        ],
+        "status": "Pending"
+    },
+    {
+        "id": 9,
+        "week": "Week 2",
+        "week_title": "Visualization & Comparative Analysis",
+        "task": "Perform detailed exploratory analysis on customer attributes, loan attributes and previous loan behavior.",
+        "deadline": "20th Aug",
+        "assignees": [
+            "Yash",
+            "Anushka"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 10,
+        "week": "Week 2",
+        "week_title": "Visualization & Comparative Analysis",
+        "task": "Compare defaulters and non-defaulters using clear visual summaries.",
+        "deadline": "20th Aug",
+        "assignees": [
+            "Sahib"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 11,
+        "week": "Week 2",
+        "week_title": "Visualization & Comparative Analysis",
+        "task": "Develop explanatory charts that start answering your analysis questions.",
+        "deadline": "20th Aug",
+        "assignees": [
+            "Sahib"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 12,
+        "week": "Week 2",
+        "week_title": "Visualization & Comparative Analysis",
+        "task": "Prepare a mid-week EDA summary with your main findings so far.",
+        "deadline": "22nd Aug",
+        "assignees": [
+            "Yash",
+            "Anushka"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 13,
+        "week": "Week 3",
+        "week_title": "Report Writing & Final Presentation",
+        "task": "Build a clean and interactive dashboard that presents your insights in a structured way.",
+        "deadline": "24th Aug",
+        "assignees": [
+            "Sahib",
+            "Ashwanth V"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 14,
+        "week": "Week 3",
+        "week_title": "Report Writing & Final Presentation",
+        "task": "Write a complete technical report covering your approach, analysis and key takeaways.",
+        "deadline": "24th Aug",
+        "assignees": [
+            "Sahib",
+            "Ashwanth V"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 15,
+        "week": "Week 3",
+        "week_title": "Report Writing & Final Presentation",
+        "task": "Prepare a final presentation with focused visuals and clear conclusions.",
+        "deadline": "28th Aug",
+        "assignees": [
+            "Anushka"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 16,
+        "week": "Week 3",
+        "week_title": "Report Writing & Final Presentation",
+        "task": "Review your work within the group and refine charts, text and explanations.",
+        "deadline": "28th Aug",
+        "assignees": [
+            "Sahib",
+            "Yash",
+            "Kannan",
+            "Ashwanth V",
+            "Anushka"
+        ],
+        "status": "Not Started"
+    },
+    {
+        "id": 17,
+        "week": "Week 3",
+        "week_title": "Report Writing & Final Presentation",
+        "task": "Present your insights with a simple story that connects the problem, analysis and actions.",
+        "deadline": "28th Aug",
+        "assignees": [
+            "Sahib",
+            "Yash",
+            "Kannan",
+            "Ashwanth V",
+            "Anushka"
+        ],
+        "status": "Not Started"
+    }
+]

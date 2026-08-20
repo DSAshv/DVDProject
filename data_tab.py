@@ -537,10 +537,44 @@ def render_data_tab():
 
     st.markdown("---")
     st.subheader("Data dictionary and sample views")
+
+    # Create combined data dictionary
+    data_dictionary = []
+
+    for name, df in data.items():
+        for col in df.columns:
+            data_dictionary.append({
+                "dataset": name,
+                "column": col,
+                "dtype": str(df[col].dtype),
+                "non_null_count": int(df[col].notna().sum()),
+                "null_count": int(df[col].isna().sum()),
+                "unique_values": int(df[col].nunique())
+            })
+
+    data_dictionary_df = pd.DataFrame(data_dictionary)
+
+    # Download button
+    csv = data_dictionary_df.to_csv(index=False).encode("utf-8")
+
+    st.download_button(
+        label="⬇️ Download Data Dictionary",
+        data=csv,
+        file_name="data_dictionary.csv",
+        mime="text/csv"
+    )
+
+    # Display datasets
     for name, df in data.items():
         with st.expander(f"{name} ({len(df.columns)} fields, {len(df)} rows)"):
             st.write("Columns:")
-            columns = pd.DataFrame({"name": df.columns, "dtype": [str(dt) for dt in df.dtypes]})
-            st.dataframe(columns)
+
+            columns = pd.DataFrame({
+                "name": df.columns,
+                "dtype": [str(dt) for dt in df.dtypes]
+            })
+
+            st.dataframe(columns, use_container_width=True)
+
             st.write("Sample rows:")
-            st.dataframe(df.head(3))
+            st.dataframe(df.head(3), use_container_width=True)
