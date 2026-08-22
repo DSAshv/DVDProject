@@ -534,6 +534,8 @@ def render_business_goal_tab():
 
     <!-- ANUSHKA -->
 
+        <!-- ANUSHKA -->
+
     <div class="persona-section">
 
         <div class="persona-header">
@@ -543,8 +545,83 @@ def render_business_goal_tab():
 
         <div class="question-grid">
 
-            <div class="empty-note">
-                Add questions here
+            <div class="question-card">
+                <div class="question-number">Q1</div>
+                <div class="question-text">
+                    How does delivery delay affect customer review scores?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q2</div>
+                <div class="question-text">
+                    Which product categories receive the highest and lowest
+                    customer ratings?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q3</div>
+                <div class="question-text">
+                    Which seller behaviors (shipping speed, order handling
+                    time, cancellations) are linked to poor reviews?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q4</div>
+                <div class="question-text">
+                    Which regions have the most late deliveries and
+                    dissatisfied customers?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q5</div>
+                <div class="question-text">
+                    Does payment method or installment usage influence
+                    customer satisfaction?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q6</div>
+                <div class="question-text">
+                    How do freight cost and delivery distance relate to
+                    delivery performance?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q7</div>
+                <div class="question-text">
+                    Which sellers consistently perform well or poorly?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q8</div>
+                <div class="question-text">
+                    What characteristics distinguish 5-star orders from
+                    1-star orders?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q9</div>
+                <div class="question-text">
+                    Are there seasonal periods when delays and negative
+                    reviews increase?
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q10</div>
+                <div class="question-text">
+                    Where should the company invest (logistics, sellers,
+                    or regions) to maximize growth while preserving
+                    customer satisfaction?
+                </div>
             </div>
 
         </div>
