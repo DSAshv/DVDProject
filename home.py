@@ -5,6 +5,7 @@ def render_home():
     st.markdown("""
     ### Project Introduction
 
+    [Project Doc](https://docs.google.com/document/u/2/d/e/2PACX-1vTK3D-jGSwK2p0mPOOeC7SieNxD137LHUBW1-iF4B0VH4Y_7GNdwQ53GZeNoCRU8KWgW-XyJclYPuNn/pub)
     This project studies the complete e-commerce customer journey, from **order placement and payment to seller handling, delivery, and customer reviews**.
 
     Our goal is to understand what drives customer satisfaction and identify where the marketplace is at risk of poor experiences. We will investigate how **product categories, seller behaviour, delivery performance, and geographic regions** influence customer ratings.
