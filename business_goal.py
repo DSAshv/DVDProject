@@ -514,6 +514,8 @@ def render_business_goal_tab():
 
     <!-- ASHWANTH -->
 
+        <!-- ASHWANTH -->
+
     <div class="persona-section">
 
         <div class="persona-header">
@@ -523,8 +525,126 @@ def render_business_goal_tab():
 
         <div class="question-grid">
 
-            <div class="empty-note">
-                Add questions here
+            <div class="question-card">
+                <div class="question-number">Q1</div>
+                <div class="question-text">
+                    What overall share of orders result in an unhappy customer
+                    (1–2 star review), and has that share been rising or falling
+                    over time?
+                </div>
+                <div class="question-meta">
+                    order_reviews · orders · review_score · purchase_timestamp
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q2</div>
+                <div class="question-text">
+                    How much of customer dissatisfaction is explained by late
+                    delivery, versus something else entirely such as product
+                    quality or seller behavior?
+                </div>
+                <div class="question-meta">
+                    delivery dates · estimated delivery · review_score
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q3</div>
+                <div class="question-text">
+                    Which product categories generate the most growth
+                    (order/revenue volume) while carrying the most
+                    dissatisfaction risk?
+                </div>
+                <div class="question-meta">
+                    order_items · products · categories · reviews
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q4</div>
+                <div class="question-text">
+                    Are certain sellers a recurring source of bad experiences
+                    regardless of category or delivery time, and how much of
+                    total marketplace volume do they represent?
+                </div>
+                <div class="question-meta">
+                    seller_id · order volume · review_score
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q5</div>
+                <div class="question-text">
+                    Is dissatisfaction a broad, platform-wide problem, or is it
+                    concentrated in a small number of sellers, categories, or
+                    regions that could be targeted directly?
+                </div>
+                <div class="question-meta">
+                    seller · category · region · dissatisfaction concentration
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q6</div>
+                <div class="question-text">
+                    Do certain regions of the country experience systematically
+                    worse delivery performance and satisfaction, independent
+                    of which sellers serve them?
+                </div>
+                <div class="question-meta">
+                    customer_state · seller_state · delivery delay · reviews
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q7</div>
+                <div class="question-text">
+                    Where in the order journey does the delay actually happen:
+                    seller handling/dispatch or carrier transit, and which leg
+                    matters more for customer satisfaction?
+                </div>
+                <div class="question-meta">
+                    purchase → carrier · carrier → customer · review_score
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q8</div>
+                <div class="question-text">
+                    Do higher-cost orders, higher shipping costs relative to
+                    price, or long installment plans make customers more likely
+                    to leave a bad review?
+                </div>
+                <div class="question-meta">
+                    payments · price · freight_value · installments · reviews
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q9</div>
+                <div class="question-text">
+                    Does the way a seller was acquired, such as lead source,
+                    business segment, or declared revenue at onboarding,
+                    predict whether they become a high-risk seller later?
+                </div>
+                <div class="question-meta">
+                    closed_deals · marketing_leads · seller performance
+                </div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Q10</div>
+                <div class="question-text">
+                    If leadership had to choose where to invest, such as
+                    support and incentives, versus where to intervene through
+                    enforcement or offboarding, which seller, category, or
+                    region segments would improve satisfaction most without
+                    shrinking the catalogue?
+                </div>
+                <div class="question-meta">
+                    Q3–Q7 synthesis · risk vs volume · intervention priorities
+                </div>
             </div>
 
         </div>
