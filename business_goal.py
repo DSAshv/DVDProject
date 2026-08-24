@@ -15,182 +15,481 @@ def render_business_goal_tab():
 
     html = """
 <style>
-    * {
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-    }
 
-    body {
-        margin: 0;
-        background: transparent;
-    }
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    /* =====================================================
-       PERSON SECTION
-       ===================================================== */
-
-    .persona-section {
-        margin: 0 0 38px 0;
-        padding-bottom: 32px;
-        border-bottom: 1px solid #e5e7eb;
-    }
-
-    .persona-section:last-child {
-        border-bottom: none;
-    }
-
-    .persona-header {
-        display: flex;
-        align-items: center;
-        gap: 11px;
-        margin-bottom: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #eeeeee;
-    }
-
-    .persona-avatar {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        background: #f3f4f6;
-        color: #374151;
-
-        font-size: 12px;
-        font-weight: 700;
-        flex-shrink: 0;
-    }
-
-    .persona-name {
-        font-size: 16px;
-        font-weight: 700;
-        color: #252525;
-    }
+body {
+    margin: 0;
+    background: transparent;
+}
 
 
-    /* =====================================================
-       QUESTION GRID
-       ===================================================== */
+/* =====================================================
+   VOTING RESULTS
+   ===================================================== */
 
+.voting-section {
+    margin: 0 0 42px 0;
+}
+
+.voting-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.voting-title {
+    font-size: 18px;
+    font-weight: 750;
+    color: #252525;
+}
+
+.voting-subtitle {
+    font-size: 11px;
+    color: #8a8a8a;
+    margin-top: 4px;
+}
+
+.vote-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+
+.vote-table th {
+    text-align: left;
+    padding: 13px 14px;
+    background: #f8f8f7;
+    color: #666;
+    font-size: 10px;
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.vote-table td {
+    padding: 14px;
+    font-size: 12px;
+    color: #292929;
+    border-bottom: 1px solid #eeeeee;
+    vertical-align: middle;
+}
+
+.vote-table tr:last-child td {
+    border-bottom: none;
+}
+
+.vote-table tr:hover td {
+    background: #fffdf5;
+}
+
+.serial {
+    width: 45px;
+    color: #999;
+    font-weight: 700;
+}
+
+.question-column {
+    width: auto;
+    line-height: 1.5;
+}
+
+.member-column {
+    width: 150px;
+}
+
+.vote-column {
+    width: 90px;
+    text-align: center !important;
+}
+
+.member {
+    font-size: 11px;
+    font-weight: 650;
+    color: #555;
+}
+
+.vote-badge {
+    display: inline-flex;
+    min-width: 32px;
+    height: 28px;
+    padding: 0 9px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: #fff3c4;
+    color: #806800;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.vote-badge.high {
+    background: #dff5e5;
+    color: #23733c;
+}
+
+.vote-badge.medium {
+    background: #fff0c7;
+    color: #806800;
+}
+
+.vote-badge.low {
+    background: #f1f1f1;
+    color: #666;
+}
+
+
+/* =====================================================
+   PERSON SECTION
+   ===================================================== */
+
+.persona-section {
+    margin: 0 0 38px 0;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.persona-section:last-child {
+    border-bottom: none;
+}
+
+.persona-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.persona-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f3f4f6;
+    color: #374151;
+
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.persona-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #252525;
+}
+
+
+/* =====================================================
+   QUESTION GRID
+   ===================================================== */
+
+.question-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+
+/* =====================================================
+   QUESTION CARD
+   ===================================================== */
+
+.question-card {
+    min-height: 155px;
+    padding: 16px;
+
+    background: #fffdf2;
+
+    border: 1px solid #eee8c9;
+    border-radius: 6px;
+
+    box-shadow:
+        2px 3px 0 rgba(0,0,0,0.03),
+        0 5px 12px rgba(0,0,0,0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.question-card:nth-child(2n) {
+    background: #fff9e8;
+}
+
+.question-card:nth-child(3n) {
+    background: #fffdf7;
+}
+
+.question-card:nth-child(4n) {
+    background: #fffbea;
+}
+
+.question-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        2px 8px 18px rgba(0,0,0,0.10);
+}
+
+.question-number {
+    font-size: 10px;
+    font-weight: 750;
+    color: #a18d45;
+    margin-bottom: 9px;
+}
+
+.question-text {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #29261d;
+}
+
+.question-meta {
+    margin-top: 11px;
+    font-size: 9.5px;
+    line-height: 1.4;
+    color: #8b856f;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1100px) {
     .question-grid {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 14px;
+        grid-template-columns: repeat(3, 1fr);
     }
 
+    .vote-table th:nth-child(3),
+    .vote-table td:nth-child(3) {
+        display: none;
+    }
+}
 
-    /* =====================================================
-       STICKY NOTE
-       ===================================================== */
-
-    .question-card {
-        min-height: 145px;
-        padding: 16px;
-
-        background: #fffdf2;
-
-        border: 1px solid #eee8c9;
-        border-radius: 6px;
-
-        box-shadow:
-            2px 3px 0 rgba(0,0,0,0.03),
-            0 5px 12px rgba(0,0,0,0.05);
-
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
+@media (max-width: 800px) {
+    .question-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .question-card:nth-child(2n) {
-        background: #fff9e8;
+    .vote-table {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 550px) {
+    .question-grid {
+        grid-template-columns: 1fr;
     }
 
-    .question-card:nth-child(3n) {
-        background: #fffdf7;
+    .member-column {
+        display: none;
     }
 
-    .question-card:nth-child(4n) {
-        background: #fffbea;
+    .vote-table th:nth-child(3),
+    .vote-table td:nth-child(3) {
+        display: none;
     }
-
-    .question-card:hover {
-        transform: translateY(-4px);
-        box-shadow:
-            2px 8px 18px rgba(0,0,0,0.10);
-    }
-
-    .question-number {
-        font-size: 10px;
-        font-weight: 750;
-        color: #a18d45;
-        margin-bottom: 9px;
-    }
-
-    .question-text {
-        font-size: 12.5px;
-        line-height: 1.5;
-        color: #29261d;
-    }
-
-    .question-meta {
-        margin-top: 11px;
-        font-size: 9.5px;
-        line-height: 1.4;
-        color: #8b856f;
-    }
-
-
-    /* =====================================================
-       EMPTY SPACE
-       ===================================================== */
-
-    .empty-note {
-        min-height: 120px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        border: 1px dashed #d8d2b8;
-        background: #fffef8;
-
-        color: #aaa38d;
-        font-size: 12px;
-
-        border-radius: 6px;
-    }
-
-
-    /* =====================================================
-       RESPONSIVE
-       ===================================================== */
-
-    @media (max-width: 1100px) {
-        .question-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (max-width: 800px) {
-        .question-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 550px) {
-        .question-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
+}
 </style>
 """
 
     html += """
+
+        <div class="voting-section">
+    
+        <div class="voting-header">
+            <div>
+                <div class="voting-title">Voting Results</div>
+                <div class="voting-subtitle">
+                    Top 10 questions selected by the team
+                </div>
+            </div>
+        </div>
+    
+        <table class="vote-table">
+    
+            <thead>
+                <tr>
+                    <th class="serial">S.No.</th>
+                    <th>Question</th>
+                    <th class="member-column">Added by</th>
+                    <th class="vote-column">Votes</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+    
+                <tr>
+                    <td class="serial">1</td>
+                    <td class="question-column">
+                        Beyond delivery, what else moves the score — price,
+                        freight ratio, product weight/size, photo count,
+                        description length, number of items?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Yash Arabhavi</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge high">4</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">2</td>
+                    <td class="question-column">
+                        Which product categories carry high revenue and poor
+                        satisfaction?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Yash Arabhavi</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge high">4</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">3</td>
+                    <td class="question-column">
+                        How concentrated is the damage across sellers?
+                        What share of all 1★ reviews comes from the worst
+                        5% of sellers?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Yash Arabhavi</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge high">4</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">4</td>
+                    <td class="question-column">
+                        Which seller behaviours predict bad reviews —
+                        handling time, order volume, catalogue breadth,
+                        freight pricing?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Yash Arabhavi</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge high">4</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">5</td>
+                    <td class="question-column">
+                        Are certain sellers a recurring source of bad
+                        experiences regardless of category or delivery time,
+                        and how much of total marketplace volume do they represent?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Ashwanth V</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge medium">3</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">6</td>
+                    <td class="question-column">
+                        Do certain regions of the country experience
+                        systematically worse delivery performance and
+                        satisfaction, independent of which sellers serve them?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Ashwanth V</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge medium">3</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">7</td>
+                    <td class="question-column">
+                        How does delivery delay affect customer review scores?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Anushka</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge medium">3</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">8</td>
+                    <td class="question-column">
+                        Where should the company invest (logistics, sellers,
+                        or regions) to maximize growth while preserving
+                        customer satisfaction?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Anushka</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge medium">3</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">9</td>
+                    <td class="question-column">
+                        Is it being slow or breaking the promise that angers
+                        customers? An order delivered in 20 days but 5 days early
+                        vs one delivered in 8 days but 2 days late, which scores worse?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Yash Arabhavi</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge low">2</span>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td class="serial">10</td>
+                    <td class="question-column">
+                        Which seller-state → customer-state routes perform worst?
+                        Is poor delivery about distance, or about specific bad origins?
+                    </td>
+                    <td class="member-column">
+                        <span class="member">Yash Arabhavi</span>
+                    </td>
+                    <td class="vote-column">
+                        <span class="vote-badge low">2</span>
+                    </td>
+                </tr>
+    
+            </tbody>
+    
+        </table>
+    
+    </div>
+
 
 
     <!-- SAHIB -->
