@@ -1040,6 +1040,6 @@ body {
 
     components.html(
         html,
-        height=3200,
+        height=3500,
         scrolling=False
     )
