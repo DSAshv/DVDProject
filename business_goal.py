@@ -32,7 +32,6 @@ body {
     justify-content: space-between;
     margin-bottom: 18px;
     padding-bottom: 12px;
-    border-bottom: 1px solid #e5e7eb;
 }
 
 .voting-title {
