@@ -4,8 +4,6 @@ import streamlit.components.v1 as components
 
 def render_business_goal_tab():
 
-    st.title("Business Goal & Analysis Questions")
-
     st.markdown(
         """
         Rewrite the business goal in your own words and list the questions
