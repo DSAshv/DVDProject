@@ -6,6 +6,7 @@ from team import render_team_tab
 from business_goal import render_business_goal_tab
 from cleaned_data_tab import render_cleaned_data_tab
 from eda_tab import render_eda_tab
+from analysis_tab import render_analysis_tab
 
 
 def main():
@@ -34,6 +35,7 @@ def main():
         "Cleaned Data",
         "EDA",
         "Business Goal Questions",
+        "Analysis",
     ])
 
     with tabs[0]:
@@ -53,6 +55,9 @@ def main():
 
     with tabs[5]:
         render_business_goal_tab()
+
+    with tabs[6]:
+        render_analysis_tab()
 
 
 if __name__ == "__main__":

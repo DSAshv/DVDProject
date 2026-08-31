@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Ashwanth V",
+    "initial": "AV",
+    "topic": "Product & Pricing",
+    "questions": [
+      "Beyond delivery, what else moves the score — price, freight ratio, product weight/size, photo count, description length, number of items?",
+      "Which product categories carry high revenue, low revenue, and poor satisfaction?"
+    ],
+    "notebook": "analysis/Product & Pricing - Ashwanth/Product_Pricing_Analysis.ipynb",
+    "pdf": "analysis/Product & Pricing - Ashwanth/Product_Pricing_Analysis.pdf",
+    "html": "analysis/Product & Pricing - Ashwanth/Product_Pricing_Analysis.html",
+    "figures_dir": "analysis/Product & Pricing - Ashwanth/figures",
+    "status": "Completed"
+  },
+  {
+    "name": "Kannan S",
+    "initial": "KS",
+    "topic": "Seller Performance",
+    "questions": [
+      "How concentrated is the damage across sellers? (Worst 5% of sellers)",
+      "Are certain sellers a recurring source of bad experiences regardless of category or delivery time?"
+    ],
+    "notebook": "analysis/seller_performance (Kannan)/Seller_Performance_Analysis.ipynb",
+    "pdf": "analysis/seller_performance (Kannan)/Seller_Performance_Report.pdf",
+    "html": null,
+    "figures_dir": null,
+    "status": "Completed"
+  },
+  {
+    "name": "Yash Arabhavi",
+    "initial": "YA",
+    "topic": "Delivery Performance",
+    "questions": [
+      "How does delivery delay affect customer review scores?",
+      "Is it being slow or breaking the promise that angers customers?"
+    ],
+    "notebook": null,
+    "pdf": null,
+    "html": null,
+    "figures_dir": null,
+    "status": "In Progress"
+  },
+  {
+    "name": "Anushka",
+    "initial": "A",
+    "topic": "Regional Logistics",
+    "questions": [
+      "Do certain regions experience systematically worse delivery performance and satisfaction?",
+      "Which seller-state → customer-state routes perform worst?"
+    ],
+    "notebook": null,
+    "pdf": null,
+    "html": null,
+    "figures_dir": null,
+    "status": "In Progress"
+  },
+  {
+    "name": "Sahib Randhawa",
+    "initial": "SR",
+    "topic": "Seller Behaviour Drivers",
+    "questions": [
+      "Which seller behaviours predict bad reviews? (Handling time, volume, catalogue breadth, freight pricing)",
+      "Where should the company invest to maximise growth while preserving satisfaction?"
+    ],
+    "notebook": null,
+    "pdf": null,
+    "html": null,
+    "figures_dir": null,
+    "status": "In Progress"
+  }
+]
