@@ -4,6 +4,8 @@ from home import render_home
 from data_tab import render_data_tab
 from team import render_team_tab
 from business_goal import render_business_goal_tab
+from cleaned_data_tab import render_cleaned_data_tab
+from eda_tab import render_eda_tab
 
 
 def main():
@@ -29,6 +31,8 @@ def main():
         "Home",
         "Team",
         "Data",
+        "Cleaned Data",
+        "EDA",
         "Business Goal Questions",
     ])
 
@@ -42,6 +46,12 @@ def main():
         render_data_tab()
 
     with tabs[3]:
+        render_cleaned_data_tab()
+
+    with tabs[4]:
+        render_eda_tab()
+
+    with tabs[5]:
         render_business_goal_tab()
 
 
