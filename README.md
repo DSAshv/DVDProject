@@ -22,3 +22,4 @@ The portal references the Brazilian E-Commerce Dataset. Place the dataset under 
 - The repository is structured for Streamlit multi-page navigation.
 - Project and team content is intentionally modular and easy to update.
 - Analysis pages include placeholders until data exploration and modeling are complete.
+ 
