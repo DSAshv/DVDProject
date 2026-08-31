@@ -19,6 +19,141 @@ body {
 
 
 /* =====================================================
+   QUESTION ASSIGNMENTS
+   ===================================================== */
+
+.assignments-section {
+    margin: 0 0 42px 0;
+}
+
+.assignments-title {
+    font-size: 18px;
+    font-weight: 750;
+    color: #252525;
+    margin-bottom: 4px;
+}
+
+.assignments-subtitle {
+    font-size: 11px;
+    color: #8a8a8a;
+    margin-bottom: 18px;
+}
+
+.assignments-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+
+.assignments-table th {
+    text-align: left;
+    padding: 13px 14px;
+    background: #f8f8f7;
+    color: #666;
+    font-size: 10px;
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.assignments-table td {
+    padding: 14px;
+    font-size: 12px;
+    color: #292929;
+    border-bottom: 1px solid #eeeeee;
+    vertical-align: top;
+}
+
+.assignments-table tr:last-child td {
+    border-bottom: none;
+}
+
+.assignments-table tr:hover td {
+    background: #fffdf5;
+}
+
+.topic-col {
+    width: 180px;
+    font-weight: 700;
+    font-size: 12px;
+    color: #252525;
+    white-space: nowrap;
+}
+
+.topic-tag {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+}
+
+.tag-delivery   { background: #dbeafe; color: #1d4ed8; }
+.tag-regional   { background: #fce7f3; color: #9d174d; }
+.tag-seller     { background: #d1fae5; color: #065f46; }
+.tag-behaviour  { background: #ede9fe; color: #5b21b6; }
+.tag-product    { background: #fff3c4; color: #806800; }
+
+.assignee-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f3f4f6;
+    border-radius: 20px;
+    padding: 4px 10px 4px 4px;
+    font-size: 11px;
+    font-weight: 650;
+    color: #374151;
+    white-space: nowrap;
+}
+
+.assignee-chip .chip-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #374151;
+    font-size: 9px;
+    font-weight: 750;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.q-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.q-list li {
+    display: flex;
+    gap: 8px;
+    line-height: 1.5;
+}
+
+.q-num {
+    font-size: 10px;
+    font-weight: 750;
+    color: #a18d45;
+    min-width: 22px;
+    padding-top: 1px;
+}
+
+
+/* =====================================================
    VOTING RESULTS
    ===================================================== */
 
@@ -304,8 +439,119 @@ body {
 
     html += """
 
+        <!-- QUESTION ASSIGNMENTS -->
+
+        <div class="assignments-section">
+            <div class="assignments-title">Questions by Topic</div>
+            <div class="assignments-subtitle">Who is answering which questions</div>
+
+            <table class="assignments-table">
+                <thead>
+                    <tr>
+                        <th style="width:160px">Topic</th>
+                        <th style="width:130px">Assigned to</th>
+                        <th>Questions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td class="topic-col">
+                            <span class="topic-tag tag-delivery">Delivery Performance</span>
+                        </td>
+                        <td>
+                            <span class="assignee-chip">
+                                <span class="chip-avatar">YA</span>
+                                Yash
+                            </span>
+                        </td>
+                        <td>
+                            <ul class="q-list">
+                                <li><span class="q-num">Q1</span>How does delivery delay affect customer review scores?</li>
+                                <li><span class="q-num">Q2</span>Is it being slow or breaking the promise that angers customers? (Early vs Late delivery)</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="topic-col">
+                            <span class="topic-tag tag-regional">Regional Logistics</span>
+                        </td>
+                        <td>
+                            <span class="assignee-chip">
+                                <span class="chip-avatar">A</span>
+                                Anushka
+                            </span>
+                        </td>
+                        <td>
+                            <ul class="q-list">
+                                <li><span class="q-num">Q1</span>Do certain regions experience systematically worse delivery performance and satisfaction?</li>
+                                <li><span class="q-num">Q2</span>Which seller-state → customer-state routes perform worst?</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="topic-col">
+                            <span class="topic-tag tag-seller">Seller Performance</span>
+                        </td>
+                        <td>
+                            <span class="assignee-chip">
+                                <span class="chip-avatar">KS</span>
+                                Kannan
+                            </span>
+                        </td>
+                        <td>
+                            <ul class="q-list">
+                                <li><span class="q-num">Q1</span>How concentrated is the damage across sellers? (Worst 5% sellers)</li>
+                                <li><span class="q-num">Q2</span>Are certain sellers a recurring source of bad experiences regardless of category or delivery time?</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="topic-col">
+                            <span class="topic-tag tag-behaviour">Seller Behaviour Drivers</span>
+                        </td>
+                        <td>
+                            <span class="assignee-chip">
+                                <span class="chip-avatar">SR</span>
+                                Sahib
+                            </span>
+                        </td>
+                        <td>
+                            <ul class="q-list">
+                                <li><span class="q-num">Q1</span>Which seller behaviours predict bad reviews? (Handling time, volume, catalogue breadth, freight pricing)</li>
+                                <li><span class="q-num">Q2</span>Where should the company invest (logistics, sellers, or regions) to maximize growth while preserving customer satisfaction?</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="topic-col">
+                            <span class="topic-tag tag-product">Product &amp; Pricing</span>
+                        </td>
+                        <td>
+                            <span class="assignee-chip">
+                                <span class="chip-avatar">AV</span>
+                                Ashwanth
+                            </span>
+                        </td>
+                        <td>
+                            <ul class="q-list">
+                                <li><span class="q-num">Q1</span>Beyond delivery, what else moves the score? (Price, freight ratio, weight, size, photos, description, items)</li>
+                                <li><span class="q-num">Q2</span>Which product categories carry high &amp; lowest revenue and poor satisfaction?</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
         <div class="voting-section">
-    
+
         <div class="voting-header">
             <div>
                 <div class="voting-title">Voting Results</div>
@@ -1040,6 +1286,6 @@ body {
 
     components.html(
         html,
-        height=3500,
+        height=4000,
         scrolling=False
     )

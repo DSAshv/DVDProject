@@ -38,22 +38,10 @@
             "Ashwanth V",
             "Anushka"
         ],
-        "status": "In Progress"
+        "status": "Completed"
     },
     {
         "id": 4,
-        "week": "Week 1",
-        "week_title": "Data Exploration, Cleaning & Initial Insights",
-        "task": "Perform early exploratory checks to study borrower profiles and default proportions.",
-        "deadline": "12th Aug",
-        "assignees": [
-            "Yash",
-            "Anushka"
-        ],
-        "status": "Not Started"
-    },
-    {
-        "id": 5,
         "week": "Week 1",
         "week_title": "Data Exploration, Cleaning & Initial Insights",
         "task": "Identify missing values, outliers, and data quality concerns.",
@@ -62,10 +50,10 @@
             "Kannan",
             "Ashwanth V"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     },
     {
-        "id": 6,
+        "id": 5,
         "week": "Week 1",
         "week_title": "Data Exploration, Cleaning & Initial Insights",
         "task": "Create a short Concept Note summarizing your plan and initial observations.",
@@ -73,10 +61,10 @@
         "assignees": [
             "Sahib"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     },
     {
-        "id": 7,
+        "id": 6,
         "week": "Week 2",
         "week_title": "Visualization & Comparative Analysis",
         "task": "Clean and preprocess the data, handle missing values, and resolve inconsistencies.",
@@ -85,55 +73,25 @@
             "Kannan",
             "Ashwanth V"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     },
     {
-        "id": 8,
-        "week": "Week 2",
-        "week_title": "Visualization & Comparative Analysis",
-        "task": "Merge current and previous application files where required.",
-        "deadline": "To be clarified",
-        "assignees": [
-            "Pending"
-        ],
-        "status": "Pending"
-    },
-    {
-        "id": 9,
-        "week": "Week 2",
-        "week_title": "Visualization & Comparative Analysis",
-        "task": "Perform detailed exploratory analysis on customer attributes, loan attributes and previous loan behavior.",
-        "deadline": "20th Aug",
-        "assignees": [
-            "Yash",
-            "Anushka"
-        ],
-        "status": "Not Started"
-    },
-    {
-        "id": 10,
-        "week": "Week 2",
-        "week_title": "Visualization & Comparative Analysis",
-        "task": "Compare defaulters and non-defaulters using clear visual summaries.",
-        "deadline": "20th Aug",
-        "assignees": [
-            "Sahib"
-        ],
-        "status": "Not Started"
-    },
-    {
-        "id": 11,
+        "id": 7,
         "week": "Week 2",
         "week_title": "Visualization & Comparative Analysis",
         "task": "Develop explanatory charts that start answering your analysis questions.",
         "deadline": "20th Aug",
         "assignees": [
-            "Sahib"
+            "Sahib",
+            "Kannan",
+            "Ashwanth V",
+            "Yash",
+            "Anushka"
         ],
-        "status": "Not Started"
+        "status": "In Progress"
     },
     {
-        "id": 12,
+        "id": 8,
         "week": "Week 2",
         "week_title": "Visualization & Comparative Analysis",
         "task": "Prepare a mid-week EDA summary with your main findings so far.",
@@ -145,7 +103,7 @@
         "status": "Not Started"
     },
     {
-        "id": 13,
+        "id": 9,
         "week": "Week 3",
         "week_title": "Report Writing & Final Presentation",
         "task": "Build a clean and interactive dashboard that presents your insights in a structured way.",
@@ -157,7 +115,7 @@
         "status": "Not Started"
     },
     {
-        "id": 14,
+        "id": 10,
         "week": "Week 3",
         "week_title": "Report Writing & Final Presentation",
         "task": "Write a complete technical report covering your approach, analysis and key takeaways.",
@@ -169,7 +127,7 @@
         "status": "Not Started"
     },
     {
-        "id": 15,
+        "id": 11,
         "week": "Week 3",
         "week_title": "Report Writing & Final Presentation",
         "task": "Prepare a final presentation with focused visuals and clear conclusions.",
@@ -180,7 +138,7 @@
         "status": "Not Started"
     },
     {
-        "id": 16,
+        "id": 12,
         "week": "Week 3",
         "week_title": "Report Writing & Final Presentation",
         "task": "Review your work within the group and refine charts, text and explanations.",
@@ -195,7 +153,7 @@
         "status": "Not Started"
     },
     {
-        "id": 17,
+        "id": 13,
         "week": "Week 3",
         "week_title": "Report Writing & Final Presentation",
         "task": "Present your insights with a simple story that connects the problem, analysis and actions.",
