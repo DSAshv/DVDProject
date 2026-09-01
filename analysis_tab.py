@@ -200,11 +200,13 @@ def render_analysis_tab():
 
         links_html = ""
         if pdf_path and os.path.exists(pdf_path):
-            abs_pdf = os.path.abspath(pdf_path)
+            filename = os.path.basename(pdf_path)
+            with open(pdf_path, "rb") as fh:
+                b64 = base64.b64encode(fh.read()).decode()
             links_html += (
                 f'<a class="ana-link-btn primary" '
-                f'href="file://{abs_pdf}" '
-                f'target="_blank" rel="noopener noreferrer">📄 Open PDF</a>'
+                f'href="data:application/pdf;base64,{b64}" '
+                f'download="{filename}">⬇ Download PDF</a>'
             )
         if nb_path and os.path.exists(nb_path):
             links_html += (
