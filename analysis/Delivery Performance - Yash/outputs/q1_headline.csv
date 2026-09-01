@@ -1,0 +1,2 @@
+orders_analysed,baseline_neg_pct,on_time_neg_pct,late_neg_pct,ratio_late_over_on_time,late_pct_of_orders,late_pct_of_all_negatives
+95824,12.76,9.22,62.31,6.76,6.66,32.53

@@ -1,0 +1,5 @@
+rule,orders,neg_pct,mean_score
+keep highest score (current pipeline),98673,14.631,4.0889
+keep lowest score,98673,14.728,4.0847
+keep latest review,98673,14.69,4.0863
+keep earliest review,98673,14.67,4.0873
