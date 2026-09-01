@@ -1,6 +1,7 @@
 import json
 import os
 import base64
+import re
 
 import streamlit as st
 
@@ -32,6 +33,56 @@ def load_links():
         return data if isinstance(data, list) else []
     except (json.JSONDecodeError, OSError):
         return []
+
+
+def _extract_member_name_from_folder(path_value: str) -> str:
+    """Infer member name from analysis folder name."""
+    if not path_value:
+        return ""
+
+    folder = os.path.basename(os.path.dirname(path_value))
+    if not folder:
+        return ""
+
+    # Supports legacy folder patterns and plain member-name folders.
+    dash_match = re.search(r"-\s*([A-Za-z][A-Za-z\s.]*)$", folder)
+    if dash_match:
+        return dash_match.group(1).strip()
+
+    paren_match = re.search(r"\(([^)]+)\)", folder)
+    if paren_match:
+        return paren_match.group(1).strip()
+
+    return folder.strip().replace("_", " ").title()
+
+
+def _derive_member_display(entry: dict) -> tuple[str, str]:
+    """Return display name and avatar initial using analysis folder names."""
+    path_candidates = [
+        entry.get("pdf") or "",
+        entry.get("notebook") or "",
+        entry.get("html") or "",
+        entry.get("figures_dir") or "",
+    ]
+
+    display_name = ""
+    for path_value in path_candidates:
+        display_name = _extract_member_name_from_folder(path_value)
+        if display_name:
+            break
+
+    if not display_name:
+        display_name = entry.get("name", "")
+
+    parts = [p for p in display_name.split() if p]
+    if len(parts) >= 2:
+        initial = (parts[0][0] + parts[1][0]).upper()
+    elif len(parts) == 1:
+        initial = parts[0][0].upper()
+    else:
+        initial = "?"
+
+    return display_name, initial
 
 
 def pdf_download_button(pdf_path: str, label: str = "Download PDF"):
@@ -127,8 +178,7 @@ def render_analysis_tab():
 
     # ── one card per member ──────────────────────────────────────────────────
     for entry in links:
-        name      = entry.get("name", "")
-        initial   = entry.get("initial", "?")
+        name, initial = _derive_member_display(entry)
         topic     = entry.get("topic", "")
         questions = entry.get("questions", [])
         status    = entry.get("status", "Not Started")
@@ -150,13 +200,11 @@ def render_analysis_tab():
 
         links_html = ""
         if pdf_path and os.path.exists(pdf_path):
-            fname = os.path.basename(pdf_path)
-            with open(pdf_path, "rb") as fh:
-                b64 = base64.b64encode(fh.read()).decode()
+            abs_pdf = os.path.abspath(pdf_path)
             links_html += (
                 f'<a class="ana-link-btn primary" '
-                f'href="data:application/pdf;base64,{b64}" '
-                f'download="{fname}">⬇ PDF Report</a>'
+                f'href="file://{abs_pdf}" '
+                f'target="_blank" rel="noopener noreferrer">📄 Open PDF</a>'
             )
         if nb_path and os.path.exists(nb_path):
             links_html += (
@@ -181,22 +229,3 @@ def render_analysis_tab():
         </div>
         """
         st.markdown(card_html, unsafe_allow_html=True)
-
-        # ── figures inline for completed entries with a figures dir ──────────
-        if completed and figs_dir and os.path.isdir(figs_dir):
-            fig_files = sorted(
-                f for f in os.listdir(figs_dir)
-                if f.lower().endswith(".png")
-            )
-            if fig_files:
-                with st.expander(f"📊 View figures — {name}", expanded=False):
-                    # Show two side-by-side per row using st.columns
-                    pairs = [fig_files[i:i+2] for i in range(0, len(fig_files), 2)]
-                    for pair in pairs:
-                        cols = st.columns(len(pair))
-                        for col, fname in zip(cols, pair):
-                            col.image(
-                                os.path.join(figs_dir, fname),
-                                caption=fname.replace("_", " ").replace(".png", ""),
-                                use_container_width=True,
-                            )

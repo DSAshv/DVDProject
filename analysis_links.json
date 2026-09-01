@@ -7,10 +7,10 @@
       "Beyond delivery, what else moves the score — price, freight ratio, product weight/size, photo count, description length, number of items?",
       "Which product categories carry high revenue, low revenue, and poor satisfaction?"
     ],
-    "notebook": "analysis/Product & Pricing - Ashwanth/Product_Pricing_Analysis.ipynb",
-    "pdf": "analysis/Product & Pricing - Ashwanth/Product_Pricing_Analysis.pdf",
-    "html": "analysis/Product & Pricing - Ashwanth/Product_Pricing_Analysis.html",
-    "figures_dir": "analysis/Product & Pricing - Ashwanth/figures",
+    "notebook": "analysis/Ashwanth/Product_Pricing_Analysis.ipynb",
+    "pdf": "analysis/Ashwanth/Product_Pricing_Analysis.pdf",
+    "html": "analysis/Ashwanth/Product_Pricing_Analysis.html",
+    "figures_dir": "analysis/Ashwanth/figures",
     "status": "Completed"
   },
   {
@@ -21,8 +21,8 @@
       "How concentrated is the damage across sellers? (Worst 5% of sellers)",
       "Are certain sellers a recurring source of bad experiences regardless of category or delivery time?"
     ],
-    "notebook": "analysis/seller_performance (Kannan)/Seller_Performance_Analysis.ipynb",
-    "pdf": "analysis/seller_performance (Kannan)/Seller_Performance_Report.pdf",
+    "notebook": "analysis/Kannan/Seller_Performance_Analysis.ipynb",
+    "pdf": "analysis/Kannan/Seller_Performance_Report.pdf",
     "html": null,
     "figures_dir": null,
     "status": "Completed"
@@ -35,10 +35,10 @@
       "How does delivery delay affect customer review scores?",
       "Is it being slow or breaking the promise that angers customers?"
     ],
-    "notebook": null,
-    "pdf": null,
+    "notebook": "analysis/Yash/Delivery_Performance_Analysis.ipynb",
+    "pdf": "analysis/Yash/Delivery_Performance_Report.pdf",
     "html": null,
-    "figures_dir": null,
+    "figures_dir": "analysis/Yash/figures",
     "status": "In Progress"
   },
   {
