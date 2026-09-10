@@ -88,7 +88,7 @@
             "Yash",
             "Anushka"
         ],
-        "status": "In Progress"
+        "status": "Completed"
     },
     {
         "id": 8,
@@ -100,7 +100,7 @@
             "Yash",
             "Anushka"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     },
     {
         "id": 9,
@@ -112,7 +112,7 @@
             "Sahib",
             "Ashwanth V"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     },
     {
         "id": 10,
@@ -124,7 +124,7 @@
             "Sahib",
             "Ashwanth V"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     },
     {
         "id": 11,
@@ -135,7 +135,7 @@
         "assignees": [
             "Anushka"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     },
     {
         "id": 12,
@@ -150,7 +150,7 @@
             "Ashwanth V",
             "Anushka"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     },
     {
         "id": 13,
@@ -165,6 +165,6 @@
             "Ashwanth V",
             "Anushka"
         ],
-        "status": "Not Started"
+        "status": "Completed"
     }
 ]

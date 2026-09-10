@@ -204,7 +204,7 @@ def render_task_table(tasks):
 
         status = task.get(
             "status",
-            "Not Started"
+            "Completed"
         )
 
         rows += f"""
