@@ -21,6 +21,7 @@ def load_items():
 
 
 def section_header(num, title, owner, color):
+    color = "#1d4ed8"
     st.markdown(
         f"""<div style="display:flex;align-items:center;gap:12px;margin:40px 0 12px;">
             <div style="background:{color};color:white;font-size:11px;font-weight:800;
@@ -33,6 +34,7 @@ def section_header(num, title, owner, color):
     )
 
 def insight_box(text, color="#f0f9ff", border="#0ea5e9"):
+    color, border = "#eff6ff", "#1d4ed8"
     st.markdown(
         f"""<div style="background:{color};border-left:4px solid {border};
                         border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0 18px;
@@ -72,18 +74,17 @@ def render_eda_tab():
     st.markdown(f"""
     <style>
     .eda-banner {{
-        background:linear-gradient(135deg,#0f172a 0%,#1e293b 60%,#0f3460 100%);
-        border-radius:14px;padding:28px 32px 24px;margin-bottom:8px;color:white;
+        padding:0;margin-bottom:14px;color:#102a43;
     }}
     .eda-banner h2 {{margin:0 0 6px;font-size:22px;font-weight:800;}}
-    .eda-banner p  {{margin:0;font-size:13px;color:#94a3b8;line-height:1.6;}}
+    .eda-banner p  {{margin:0;font-size:13px;color:#52606d;line-height:1.6;}}
     .kpi-row {{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}}
-    .kpi {{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+    .kpi {{background:#f8fafc;border:1px solid #dbe4ef;
            border-radius:10px;padding:16px 20px;min-width:140px;}}
     .kpi-val {{font-size:26px;font-weight:900;}}
-    .kpi-lbl {{font-size:11px;color:#94a3b8;margin-top:4px;}}
-    .kpi-sub {{font-size:10px;color:#64748b;margin-top:2px;}}
-    .cliff {{color:#f97316;}} .good {{color:#34d399;}} .warn {{color:#fbbf24;}}
+    .kpi-lbl {{font-size:11px;color:#52606d;margin-top:4px;}}
+    .kpi-sub {{font-size:10px;color:#829ab1;margin-top:2px;}}
+    .cliff {{color:#1d4ed8;}} .good {{color:#0f766e;}} .warn {{color:#52606d;}}
     </style>
     <div class="eda-banner">
         <h2>Exploratory Data Analysis — Week 1 Findings</h2>

@@ -161,24 +161,22 @@ def render_cleaned_data_tab():
         """
         <style>
         .clean-banner {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
-            border-radius: 14px;
-            padding: 28px 32px 24px;
-            margin-bottom: 28px;
-            color: white;
+            padding: 0;
+            margin-bottom: 16px;
+            color: #102a43;
         }
         .clean-banner h2 { margin: 0 0 6px; font-size: 22px; font-weight: 800; }
-        .clean-banner p  { margin: 0; font-size: 13px; color: #94a3b8; line-height: 1.6; }
+        .clean-banner p  { margin: 0; font-size: 13px; color: #52606d; line-height: 1.6; }
         .stat-row { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
         .stat-box {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.12);
+            background: #f8fafc;
+            border: 1px solid #dbe4ef;
             border-radius: 10px;
             padding: 14px 20px;
             min-width: 130px;
         }
-        .stat-val { font-size: 22px; font-weight: 800; color: #f97316; }
-        .stat-lbl { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+        .stat-val { font-size: 22px; font-weight: 800; color: #1d4ed8; }
+        .stat-lbl { font-size: 11px; color: #52606d; margin-top: 2px; }
 
         .file-card {
             border: 1px solid #e5e7eb;
