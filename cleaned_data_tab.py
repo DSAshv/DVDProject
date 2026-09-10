@@ -260,7 +260,7 @@ def render_cleaned_data_tab():
         <div class="clean-banner">
             <h2>Cleaned Dataset</h2>
             <p>
-                Preprocessed by <code>preprocess.py</code> from the raw Olist CSVs.<br>
+                Preprocessed by <code>preprocess.py</code> from the raw e-commerce CSVs.<br>
                 Dates parsed · categories translated · duplicates removed · derived columns added · all tables joinable via <code>order_id</code>.
             </p>
             <div class="stat-row">

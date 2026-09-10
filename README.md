@@ -12,7 +12,7 @@
 - Ashwanth V — `22F3001662`
 - Kannan S — `21F3000990`
 
-This project analyzes the Brazilian Olist e-commerce dataset to understand delivery performance, seller performance, regional logistics, product pricing, and customer satisfaction.
+This project analyzes a Brazilian e-commerce dataset to understand delivery performance, seller performance, regional logistics, product pricing, and customer satisfaction.
 
 ## Reproducibility
 

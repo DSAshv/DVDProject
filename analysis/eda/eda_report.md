@@ -1,4 +1,4 @@
-# EDA Report — Olist E-Commerce
+# EDA Report — Brazilian E-Commerce
 
 ## 0. Dataset Overview
 

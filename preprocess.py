@@ -1,5 +1,5 @@
 """
-Preprocessing pipeline for the Olist E-Commerce dataset.
+Preprocessing pipeline for the Brazilian E-Commerce dataset.
 
 Run once from the project root:
     python preprocess.py

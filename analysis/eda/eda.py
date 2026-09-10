@@ -41,7 +41,7 @@ def md_table(df):
     print(t)
 
 # ── Load ────────────────────────────────────────────────────────────────────
-h("# EDA Report — Olist E-Commerce\n")
+h("# EDA Report — Brazilian E-Commerce\n")
 
 master   = pd.read_csv(os.path.join(DATA, "master_orders.csv"), low_memory=False)
 items    = pd.read_csv(os.path.join(DATA, "order_items.csv"),   low_memory=False)

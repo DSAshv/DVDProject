@@ -88,7 +88,7 @@ def render_eda_tab():
     </style>
     <div class="eda-banner">
         <h2>Exploratory Data Analysis — Week 1 Findings</h2>
-        <p>Olist E-Commerce · Sept 2016 – Oct 2018 · {len(master):,} orders · {len(reviewed):,} reviewed</p>
+        <p>Brazilian E-Commerce · Sept 2016 – Oct 2018 · {len(master):,} orders · {len(reviewed):,} reviewed</p>
         <div class="kpi-row">
             <div class="kpi">
                 <div class="kpi-val cliff">{baseline:.1f}%</div>
