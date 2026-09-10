@@ -1,25 +1,35 @@
-# E-Commerce Analysis Project Portal
+# A VISUAL STUDY OF E-COMMERCE ORDERS, DELIVERY & CUSTOMER SATISFACTION
 
-A Streamlit project portal for the May 2026 Data Visualization Design Project.
+**DATA VISUALIZATION DESIGN (BSCS4001)**
 
-## Overview
-This repository contains a professional Streamlit workspace for a 5-member, 3-week project on e-commerce orders, delivery performance, and customer satisfaction.
+**Team:** Team 2
 
-## Run the app
-1. Install dependencies:
-   ```bash
-   python3 -m pip install -r requirements.txt
-   ```
-2. Start the app:
-   ```bash
-   streamlit run app.py
-   ```
+**Team members:**
 
-## Dataset
-The portal references the Brazilian E-Commerce Dataset. Place the dataset under a local `Dataset/` folder at the repository root.
+- Sahib Randhawa — `21F1006116`
+- Yash Arabhavi — `22F3001882`
+- Anushka — `21F1003889`
+- Ashwanth V — `22F3001662`
+- Kannan S — `21F3000990`
 
-## Notes
-- The repository is structured for Streamlit multi-page navigation.
-- Project and team content is intentionally modular and easy to update.
-- Analysis pages include placeholders until data exploration and modeling are complete.
- 
+This project analyzes the Brazilian Olist e-commerce dataset to understand delivery performance, seller performance, regional logistics, product pricing, and customer satisfaction.
+
+## Reproducibility
+
+From the repository root:
+
+```bash
+python3 -m pip install -r requirements.txt
+python preprocess.py
+streamlit run app.py
+```
+
+Run preprocessing before analysis so that the files in `processed_data/` are regenerated from the raw dataset. The Streamlit portal provides access to the raw-data overview, cleaned-data overview, EDA, business questions, analyses, and deliverables. Individual notebooks can be opened and rerun from the `analysis/` directory.
+
+
+## Project Resources
+
+- Presentation: [PRESENTATION.pdf](https://github.com/DSAshv/DVDProject/blob/master/PRESENTATION.pdf)
+- Project management page: [dvd-project.streamlit.app](https://dvd-project.streamlit.app/)
+- Interactive dashboard: [Open dashboard](https://dvd-project.streamlit.app/?page=dashboard)
+- Repository: [github.com/DSAshv/DVDProject](https://github.com/DSAshv/DVDProject)
