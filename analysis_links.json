@@ -49,11 +49,11 @@
       "Do certain regions experience systematically worse delivery performance and satisfaction?",
       "Which seller-state → customer-state routes perform worst?"
     ],
-    "notebook": null,
-    "pdf": null,
+    "notebook": "analysis/Anushka/Regional_Logistics_Analysis.ipynb",
+    "pdf": "analysis/Anushka/Regional_Logistics_Report.pdf",
     "html": null,
     "figures_dir": null,
-    "status": "In Progress"
+    "status": "Completed"
   },
   {
     "name": "Sahib Randhawa",
@@ -64,9 +64,9 @@
       "Where should the company invest to maximise growth while preserving satisfaction?"
     ],
     "notebook": null,
-    "pdf": null,
+    "pdf": "analysis/Sahib/Sahib_Seller_Behaviour_Investment_Report.pdf",
     "html": null,
     "figures_dir": null,
-    "status": "In Progress"
+    "status": "Completed"
   }
 ]

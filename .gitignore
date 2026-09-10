@@ -8,3 +8,4 @@ __pycache__/
 .venv
 .cache
 .streamlit/secret.toml
+DASHBOARD_PLAN.md

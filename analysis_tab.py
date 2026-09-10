@@ -57,7 +57,7 @@ def _extract_member_name_from_folder(path_value: str) -> str:
 
 
 def _derive_member_display(entry: dict) -> tuple[str, str]:
-    """Return display name and avatar initial using analysis folder names."""
+    """Return the configured display name and avatar initial."""
     path_candidates = [
         entry.get("pdf") or "",
         entry.get("notebook") or "",
@@ -65,14 +65,12 @@ def _derive_member_display(entry: dict) -> tuple[str, str]:
         entry.get("figures_dir") or "",
     ]
 
-    display_name = ""
-    for path_value in path_candidates:
-        display_name = _extract_member_name_from_folder(path_value)
-        if display_name:
-            break
-
+    display_name = entry.get("name", "")
     if not display_name:
-        display_name = entry.get("name", "")
+        for path_value in path_candidates:
+            display_name = _extract_member_name_from_folder(path_value)
+            if display_name:
+                break
 
     parts = [p for p in display_name.split() if p]
     if len(parts) >= 2:
