@@ -113,20 +113,17 @@ def apply_theme():
         .sec-subtext { color:#64748b; font-size: 13.5px; line-height: 1.5; margin: 0 0 12px; }
         .sec-takeaway { background: #ecfeff; border-left: 3px solid #0891b2; color: #0e5c68;
             padding: 9px 12px; border-radius: 0 8px 8px 0; margin: 0 0 14px; font-size: 13.5px; font-weight: 600; }
-        .sec-explain { color:#475569; font-size: 13px; line-height:1.5; margin: 14px 0 4px;
+        .sec-explain { color:#475569; font-size: 16px; line-height:1.5; margin: 14px 0 4px;
             padding-top: 12px; border-top: 1px solid #eef2f7; }
         .sec-explain strong { color:#0f172a; }
         .sec-caption { color:#94a3b8; font-size: 11.5px; margin-top: 4px; }
-        [data-testid="stPopover"] > button,
-        [data-testid="stPopover"] > button p,
-        [data-testid="stPopover"] > button span { color:#64748b !important; font-size:10px !important;
-            font-weight:600; line-height:1.2; padding:0 !important; min-height:0 !important;
-            min-width:0 !important; width:auto !important; background:transparent !important;
-            border:none !important; box-shadow:none !important; }
-        [data-testid="stPopover"] > button { color:#2563eb !important; }
-        [data-testid="stPopover"] > button:hover,
-        [data-testid="stPopover"] > button:focus { color:#1d4ed8 !important; text-decoration:underline;
-            outline:none !important; }
+        [data-testid="stExpander"], [data-testid="stExpander"] details { background: transparent !important;
+            border: none !important; margin: 10px 0 0 !important; max-width: fit-content !important; }
+        [data-testid="stExpander"] summary { color:#0f172a !important; font-size:10px !important;
+            font-weight:600; line-height:1.2; padding:0 !important; min-height:0 !important; }
+        [data-testid="stExpander"] summary:hover { color:#0f172a !important; text-decoration:none !important; }
+        [data-testid="stExpander"] summary svg { color:#0f172a !important; }
+        [data-testid="stExpander"] details[open] summary { margin-bottom: 8px; }
         .decision { background: #fffbeb; border: 1px solid #fde68a; border-left: 4px solid #d97706; color: #78350f;
             padding: 16px 18px; border-radius: 10px; margin: 4px 0 16px; line-height: 1.6; font-size: 14px; }
         .decision strong { color:#78350f; }
@@ -156,7 +153,7 @@ def section_card(title, subtext, render_body, explanation=None, source=None, ana
         render_body()
 
         def source_method():
-            with st.popover("ⓘ Source & method"):
+            with st.expander("ⓘ Source & method", expanded=False):
                 if source:
                     st.caption(f"Source / dataset: `{source}`")
                 if analyst:
@@ -175,11 +172,8 @@ def section_card(title, subtext, render_body, explanation=None, source=None, ana
                         st.caption(f"Report path: `{report_path}`")
 
         if explanation and (source or analyst):
-            explanation_column, source_column = st.columns([5, 0.8])
-            with explanation_column:
-                st.markdown(f'<div class="sec-explain"><strong>What this shows:</strong> {explanation}</div>', unsafe_allow_html=True)
-            with source_column:
-                source_method()
+            st.markdown(f'<div class="sec-explain"><strong>What this shows:</strong> {explanation}</div>', unsafe_allow_html=True)
+            source_method()
         elif explanation:
             st.markdown(f'<div class="sec-explain"><strong>What this shows:</strong> {explanation}</div>', unsafe_allow_html=True)
         elif source or analyst:
