@@ -4,8 +4,6 @@
 
 **Team:** Team 2
 
-**Team members:**
-
 | Team member | Roll number |
 |---|---|
 | Sahib Randhawa | `21F1006116` |
