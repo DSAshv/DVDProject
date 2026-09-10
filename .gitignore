@@ -9,3 +9,4 @@ __pycache__/
 .cache
 .streamlit/secret.toml
 DASHBOARD_PLAN.md
+DASHBOARD_PLAN_V2.md
