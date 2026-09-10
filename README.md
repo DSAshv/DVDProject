@@ -6,11 +6,13 @@
 
 **Team members:**
 
-Sahib Randhawa — `21F1006116`
-Yash Arabhavi — `22F3001882`
-Anushka — `21F1003889`
-Ashwanth V — `22F3001662`
-Kannan S — `21F3000990`
+| Team member | Roll number |
+|---|---|
+| Sahib Randhawa | `21F1006116` |
+| Yash Arabhavi | `22F3001882` |
+| Anushka | `21F1003889` |
+| Ashwanth V | `22F3001662` |
+| Kannan S | `21F3000990` |
 
 This project analyzes a Brazilian e-commerce dataset to understand delivery performance, seller performance, regional logistics, product pricing, and customer satisfaction.
 
