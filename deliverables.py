@@ -6,7 +6,7 @@ DELIVERABLES = [
         "🌐",
         "Live dashboard",
         "Explore the deployed DVD Project Portal.",
-        "https://dvd-project.streamlit.app/dashboard",
+        "https://dvd-project.streamlit.app/?page=dashboard",
     ),
     (
         "⌘",

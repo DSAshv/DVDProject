@@ -8,6 +8,7 @@ from cleaned_data_tab import render_cleaned_data_tab
 from eda_tab import render_eda_tab
 from analysis_tab import render_analysis_tab
 from deliverables import render_deliverables_tab
+from dashboard import render_dashboard
 
 
 def main():
@@ -15,6 +16,10 @@ def main():
         page_title="DVD Project Portal For Team 2",
         layout="wide"
     )
+
+    if st.query_params.get("page") == "dashboard":
+        render_dashboard()
+        return
 
     st.markdown(
         """
