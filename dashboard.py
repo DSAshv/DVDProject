@@ -1809,126 +1809,54 @@ def render_regions(df):
         analyst="Anushka", report_key="Regional logistics", key_suffix="region-q2",
     )
 
-    # ── Geographic maps (pydeck choropleth) ─────────────────────────────────
-    @st.cache_data(show_spinner=False)
-    def load_brazil_geojson():
-        path = os.path.join(os.path.dirname(__file__), "brazil_states.geojson")
-        with open(path) as f:
-            return json.load(f)
-
-    def _interp_red(norm):
-        # 0→light pink, 1→dark red
-        r = int(255)
-        g = int(220 - norm * 200)
-        b = int(220 - norm * 200)
-        return [max(0, r), max(0, g), max(0, b), 220]
-
-    def _interp_blue_red(norm):
-        # 0→dark red (low score), 1→dark blue (high score)
-        if norm < 0.5:
-            t = norm * 2
-            return [int(200 - t * 50), int(t * 50), int(t * 80), 220]
-        else:
-            t = (norm - 0.5) * 2
-            return [int(150 - t * 150), int(50 + t * 100), int(80 + t * 175), 220]
-
+    # ── Geographic maps (Tableau interactive maps) ─────────────────────────────
     def render_geo_maps():
-        geojson = load_brazil_geojson()
 
-        late_lookup = state_agg.set_index("customer_state")["Late delivery (%)"].to_dict()
-        review_lookup = state_agg.set_index("customer_state")["Avg review score"].to_dict()
-        orders_lookup = state_agg.set_index("customer_state")["Orders"].to_dict()
+        tableau_html = """
+        <script type="module"
+            src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js">
+        </script>
 
-        late_vals = [v for v in late_lookup.values()]
-        late_min, late_max = min(late_vals), max(late_vals)
-        rev_vals = [v for v in review_lookup.values()]
-        rev_min, rev_max = min(rev_vals), max(rev_vals)
+        <div style="width:100%;">
 
-        late_features, review_features = [], []
-        for feat in geojson["features"]:
-            abbr = feat["properties"].get("sigla", "")
-            base = {**feat, "properties": {**feat["properties"], "state": abbr}}
+            <tableau-viz
+                id="tableau-late-delivery"
+                src="https://public.tableau.com/views/Bookdvd/Sheet1"
+                width="100%"
+                height="650"
+                toolbar="bottom">
+            </tableau-viz>
 
-            if abbr in late_lookup:
-                norm = (late_lookup[abbr] - late_min) / (late_max - late_min + 1e-9)
-                late_features.append({**base, "properties": {
-                    **base["properties"],
-                    "late_pct": late_lookup[abbr],
-                    "avg_review": review_lookup.get(abbr, "n/a"),
-                    "orders": orders_lookup.get(abbr, "n/a"),
-                    "fill_color": _interp_red(norm),
-                }})
+            <div style="height:35px;"></div>
 
-            if abbr in review_lookup:
-                norm = (review_lookup[abbr] - rev_min) / (rev_max - rev_min + 1e-9)
-                review_features.append({**base, "properties": {
-                    **base["properties"],
-                    "avg_review": review_lookup[abbr],
-                    "late_pct": late_lookup.get(abbr, "n/a"),
-                    "orders": orders_lookup.get(abbr, "n/a"),
-                    "fill_color": _interp_blue_red(norm),
-                }})
 
-        view = pdk.ViewState(latitude=-14.2, longitude=-51.9, zoom=3.2, pitch=0)
+            <tableau-viz
+                id="tableau-review-score"
+                src="https://public.tableau.com/views/Bookdvd/Sheet12"
+                width="100%"
+                height="650"
+                toolbar="bottom">
+            </tableau-viz>
 
-        late_layer = pdk.Layer(
-            "GeoJsonLayer",
-            data={"type": "FeatureCollection", "features": late_features},
-            stroked=True, filled=True,
-            get_fill_color="properties.fill_color",
-            get_line_color=[255, 255, 255, 220],
-            line_width_min_pixels=1,
-            pickable=True, auto_highlight=True,
-        )
-        review_layer = pdk.Layer(
-            "GeoJsonLayer",
-            data={"type": "FeatureCollection", "features": review_features},
-            stroked=True, filled=True,
-            get_fill_color="properties.fill_color",
-            get_line_color=[255, 255, 255, 220],
-            line_width_min_pixels=1,
-            pickable=True, auto_highlight=True,
+        </div>
+        """
+
+        st.components.v1.html(
+            tableau_html,
+            height=1400,
+            scrolling=True
         )
 
-        tooltip_late = {
-            "html": "<b>{state}</b><br/>Late delivery: <b>{late_pct}%</b><br/>Avg review: {avg_review}<br/>Orders: {orders}",
-            "style": {"background": "#0f172a", "color": "white", "fontSize": "13px", "padding": "8px 12px", "borderRadius": "6px"},
-        }
-        tooltip_review = {
-            "html": "<b>{state}</b><br/>Avg review score: <b>{avg_review}</b><br/>Late delivery: {late_pct}%<br/>Orders: {orders}",
-            "style": {"background": "#0f172a", "color": "white", "fontSize": "13px", "padding": "8px 12px", "borderRadius": "6px"},
-        }
-
-        c1, c2 = st.columns(2)
-        with c1:
-            st.markdown('<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px;">Late Delivery Rate by State · darker red = higher late rate</div>', unsafe_allow_html=True)
-            st.pydeck_chart(pdk.Deck(
-                layers=[late_layer], initial_view_state=view,
-                tooltip=tooltip_late, map_style="light",
-            ), height=460)
-        with c2:
-            st.markdown('<div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:6px;">Avg Review Score by State · red = low · blue = high</div>', unsafe_allow_html=True)
-            st.pydeck_chart(pdk.Deck(
-                layers=[review_layer], initial_view_state=view,
-                tooltip=tooltip_review, map_style="light",
-            ), height=460)
-        st.markdown(
-            '<div class="sec-caption" style="margin-top:6px;">'
-            'States with fewer than 100 orders excluded (RR, AC, AP shown but no data). '
-            'Hover any state for exact values.'
-            '</div>',
-            unsafe_allow_html=True,
-        )
 
     section_card(
         "Geographic view — delivery and satisfaction by state",
         None,
         render_geo_maps,
         source="analysis/Anushka/Regional_Logistics_Report.pdf",
-        analyst="Anushka", report_key="Regional logistics", key_suffix="region-geomap",
+        analyst="Anushka",
+        report_key="Regional logistics",
+        key_suffix="region-geomap",
     )
-
-
 # --------------------------------------------------------------------------
 # Tab 6 — Product Risk  (Ashwanth V)
 # --------------------------------------------------------------------------
