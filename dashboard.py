@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 import altair as alt
+import streamlit.components.v1 as components
 
 
 DATA_DIR = "processed_data"
@@ -13,6 +14,49 @@ REPORTS = {
     "Regional logistics": ("Anushka", "analysis/Anushka/Regional_Logistics_Report.pdf"),
     "Product portfolio": ("Ashwanth V", "analysis/Ashwanth/Product_Pricing_Analysis.pdf"),
     "Recommendations": ("Sahib Randhawa", "analysis/Sahib/Sahib_Seller_Behaviour_Investment_Report.pdf"),
+}
+
+INTRO_CATEGORIES = {
+    "Delivery performance": {
+        "owner": "Yash Arabhavi",
+        "color": "#0891b2",
+        "questions": [
+            "How strongly does delivery lateness predict a bad review, and where is the cliff edge?",
+            "Is it being slow or breaking the promise that angers customers more?",
+        ],
+    },
+    "Regional logistics": {
+        "owner": "Anushka",
+        "color": "#2563eb",
+        "questions": [
+            "Do certain regions experience systematically worse delivery performance and satisfaction?",
+            "Which seller-state to customer-state routes perform worst?",
+        ],
+    },
+    "Seller performance": {
+        "owner": "Kannan S",
+        "color": "#059669",
+        "questions": [
+            "How concentrated is the damage across sellers, especially the worst 5%?",
+            "Are certain sellers a recurring source of bad experiences?",
+        ],
+    },
+    "Seller behaviour drivers": {
+        "owner": "Sahib Randhawa",
+        "color": "#d97706",
+        "questions": [
+            "Which seller behaviours predict bad reviews: handling time, volume, catalogue breadth, or freight pricing?",
+            "Where should the company invest to grow while preserving satisfaction?",
+        ],
+    },
+    "Product and pricing": {
+        "owner": "Ashwanth V",
+        "color": "#db2777",
+        "questions": [
+            "Beyond delivery, what else moves the score: price, freight, product attributes, or order size?",
+            "Which product categories carry high revenue and poor satisfaction?",
+        ],
+    },
 }
 
 
@@ -70,7 +114,7 @@ def apply_theme():
         """
         <style>
         :root { color-scheme: light; }
-        html, body, .stApp { background: #eef2f7; color: #16233a; }
+        html, body, .stApp { background: #ffffff; color: #16233a; }
         .stAppViewContainer .main .block-container {
             max-width: 980px !important; padding: 1rem 1.25rem 4rem !important; margin: 0 auto !important;
         }
@@ -94,7 +138,7 @@ def apply_theme():
         [data-testid="stSegmentedControl"] button { flex: 1 1 0; min-height: 48px; padding: 9px 12px; border-radius: 8px;
             background: transparent; color: #334155; font-size: 13.5px; font-weight: 700; }
         [data-testid="stSegmentedControl"] button[aria-checked="true"], [data-testid="stSegmentedControl"] button[aria-pressed="true"] {
-            background: #0f172a; color: #ffffff; }
+            background: #ccfbf1; color: #115e59; }
 
         /* ---- ONE card format for every section: this is the only white-box rule ---- */
         [data-testid="stVerticalBlockBorderWrapper"] {
@@ -130,6 +174,34 @@ def apply_theme():
 
         [data-testid="stMetric"] { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; }
         [data-testid="stMetricValue"] { font-size: 22px; }
+
+        /* ---- introduction ---- */
+        .intro-hero { background: #ffffff; border: 1px solid #dbe4ee; border-left: 5px solid #0f766e; border-radius: 12px;
+            padding: 26px 30px 22px; margin: 0 0 18px; box-shadow: 0 2px 8px rgba(15,23,42,0.04); }
+        .intro-kicker, .intro-section-label { color: #0f766e; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; }
+        .intro-kicker { margin-bottom: 10px; }
+        .intro-hero h1 { color: #0f172a; font-size: 30px; line-height: 1.2; margin: 0 0 12px; }
+        .intro-problem { color: #334155; font-size: 15px; line-height: 1.6; max-width: 800px; margin: 0 0 10px; }
+        .intro-instruction { color: #64748b; font-size: 12.5px; margin: 0; }
+        .intro-section-label { margin: 26px 0 10px; }
+        .intro-flow-root { background: #f0fdfa; border: 1px solid #99f6e4; border-radius: 10px; color: #115e59;
+            padding: 14px 18px; text-align: center; font-weight: 800; margin: 0 auto 10px; max-width: 520px; }
+        .intro-flow-arrow { color: #94a3b8; text-align: center; font-size: 20px; line-height: 1; margin: 2px 0; }
+        .intro-node { background: #ffffff; border: 1px solid #dbe4ee; border-left: 4px solid; border-radius: 9px;
+            padding: 12px 15px; margin: 8px auto 4px; max-width: 760px; }
+        .intro-node-title { color: #0f172a; font-weight: 750; font-size: 14px; }
+        .intro-node-owner { color: #64748b; font-size: 12px; margin-top: 3px; }
+        .intro-node-action [data-testid="stButton"] button { background: #ffffff; border: 1px solid #cbd5e1;
+            color: #0f766e; font-size: 12px; font-weight: 700; }
+        .intro-question-panel { background: #f8fafc; border: 1px solid #dbe4ee; border-radius: 9px;
+            padding: 14px 18px; margin: 4px auto 12px; max-width: 760px; }
+        .intro-question-panel h4 { color: #0f172a; margin: 0 0 4px; font-size: 15px; }
+        .intro-owner { color: #64748b; font-size: 12px; margin: 0 0 9px; }
+        .intro-questions { margin: 0; padding-left: 22px; color: #334155; }
+        .intro-questions li { margin: 8px 0; line-height: 1.45; font-size: 13px; }
+        .intro-q-number { color: #64748b; font-weight: 800; margin-right: 8px; }
+        .intro-signal { background: #ecfeff; border-left: 4px solid #0891b2; border-radius: 0 8px 8px 0; color: #164e63;
+            padding: 13px 16px; margin: 14px 0 4px; font-size: 13px; line-height: 1.6; }
         </style>
         """,
         unsafe_allow_html=True,
@@ -186,6 +258,364 @@ def page_header(eyebrow, title, subtitle, analyst="Team synthesis"):
         f'<p>{subtitle}</p><p class="analyst">Analysed by {analyst} &nbsp;·&nbsp; delivered orders with a review, unless stated otherwise</p></div>',
         unsafe_allow_html=True,
     )
+
+
+def render_intro_mind_map():
+    category_nodes = []
+    question_nodes = []
+    for index, (category_name, category) in enumerate(INTRO_CATEGORIES.items()):
+        node_id = f"category-{index}"
+        category_nodes.append(
+            f'<button class="category-node" data-target="{node_id}" '
+            f'style="--node-color:{category["color"]}">'
+            f'<span>{category_name}</span><small>{category["owner"]}</small></button>'
+        )
+        question_nodes.append(
+            f'<div class="question-group" id="questions-{node_id}">'
+            + "".join(
+                f'<button class="question-node" style="--node-color:{category["color"]}">'
+                f'{question}</button>'
+                for question in category["questions"]
+            )
+            + "</div>"
+        )
+
+    mind_map_html = f"""
+    <style>
+        * {{ box-sizing: border-box; }}
+        body {{ margin: 0; background: #ffffff; font-family: Georgia, 'Times New Roman', serif; color: #ffffff; }}
+        .mind-map {{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 900px;
+            padding: 14px 6px 24px;
+            overflow: hidden;
+        }}
+        .root-wrap {{ width: min(430px, 92%); position: relative; }}
+        .root-wrap::after, .category-branch::after {{
+            content: "";
+            display: block;
+            height: 24px;
+            width: 2px;
+            margin: 0 auto;
+            background: #9db4ff;
+        }}
+        .root-node {{
+            width: 100%;
+            border: 0;
+            border-radius: 6px;
+            padding: 12px 14px;
+            background: #596174;
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.25;
+            text-align: center;
+            cursor: pointer;
+        }}
+        .category-column {{ width: min(760px, 96%); }}
+        .category-branch {{ position: relative; width: 100%; }}
+        .category-node, .question-node {{ border: 0; border-radius: 6px; color: #ffffff;
+            font-family: Georgia, 'Times New Roman', serif; text-align: left; cursor: pointer; }}
+        .category-node {{
+            display: block;
+            width: min(430px, 82%);
+            margin: 0 auto;
+            background: var(--node-color);
+            padding: 11px 13px;
+            font-size: 14px;
+            line-height: 1.2;
+            box-shadow: 0 3px 8px rgba(15,23,42,0.12);
+        }}
+        .category-node:hover, .category-node.active {{ filter: brightness(0.92); }}
+        .category-node small {{ display: block; color: rgba(255,255,255,0.84); font-family: Arial, sans-serif; font-size: 10px; margin-top: 4px; }}
+        .question-group {{
+            width: min(620px, 92%);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 12px;
+            padding-top: 0;
+        }}
+        .question-group::before {{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            height: 14px;
+            border-left: 2px solid #9db4ff;
+        }}
+        .question-node {{
+            flex: 1;
+            background: #304640;
+            padding: 11px 14px;
+            font-size: 13px;
+            line-height: 1.25;
+            border-top: 3px solid var(--node-color);
+            margin-top: 14px;
+        }}
+        .question-node:hover {{ background: #3b5b50; }}
+        .question-group.is-hidden {{ display: none; }}
+        @media (max-width: 760px) {{
+            .mind-map {{ min-height: 1100px; padding-left: 0; padding-right: 0; }}
+            .root-node {{ font-size: 11px; padding: 9px; }}
+            .category-node {{ font-size: 11px; padding: 9px 7px; }}
+            .category-node small {{ font-size: 8px; }}
+            .question-node {{ font-size: 10px; padding: 8px; }}
+            .question-group {{ flex-direction: column; gap: 6px; }}
+            .question-node {{ margin-top: 14px; }}
+        }}
+    </style>
+    <div class="mind-map">
+        <div class="root-wrap">
+            <button class="root-node" id="root-node">Marketplace Growth and Customer Trust</button>
+        </div>
+        <div class="category-column">
+            {"".join(
+                f'<div class="category-branch">{category_node}{question_node}</div>'
+                for category_node, question_node in zip(category_nodes, question_nodes)
+            )}
+        </div>
+    </div>
+    <script>
+        const categoryNodes = document.querySelectorAll('.category-node');
+        categoryNodes.forEach((node) => {{
+            node.addEventListener('click', () => {{
+                const target = document.getElementById('questions-' + node.dataset.target);
+                const hidden = target.classList.toggle('is-hidden');
+                node.classList.toggle('active', !hidden);
+            }});
+        }});
+        document.getElementById('root-node').addEventListener('click', () => {{
+            document.querySelectorAll('.question-group').forEach((group) => group.classList.remove('is-hidden'));
+            document.querySelectorAll('.category-node').forEach((node) => node.classList.remove('active'));
+        }});
+    </script>
+    """
+    components.html(mind_map_html, height=805, scrolling=False)
+
+
+def render_mermaid_mind_map():
+    mermaid_definition = r'''
+flowchart TD
+    P["MARKETPLACE GROWTH & CUSTOMER TRUST<br/>Grow sales without breaking customer trust"]
+
+    P --> D["DELIVERY PERFORMANCE<br/>Yash Arabhavi"]
+    D --> DQ1["Q1: How strongly does delivery lateness predict a bad review,<br/>and where is the cliff edge?"]
+    D --> DQ2["Q2: Is it being slow or breaking the promise<br/>that angers customers more?"]
+
+    D --> R["REGIONAL LOGISTICS<br/>Anushka"]
+    R --> RQ1["Q1: Do certain regions experience systematically<br/>worse delivery performance and satisfaction?"]
+    R --> RQ2["Q2: Which seller-state to customer-state<br/>routes perform worst?"]
+
+    R --> S["SELLER PERFORMANCE<br/>Kannan S"]
+    S --> SQ1["Q1: How concentrated is the damage across sellers,<br/>especially the worst 5%?"]
+    S --> SQ2["Q2: Are certain sellers a recurring source of bad experiences<br/>regardless of category or delivery time?"]
+
+    S --> B["SELLER BEHAVIOUR DRIVERS<br/>Sahib Randhawa"]
+    B --> BQ1["Q1: Which seller behaviours predict bad reviews:<br/>handling time, order volume, catalogue breadth, or freight pricing?"]
+    B --> BQ2["Q2: Where should the company invest in logistics,<br/>sellers, or regions to grow while preserving satisfaction?"]
+
+    B --> PP["PRODUCT & PRICING<br/>Ashwanth V"]
+    PP --> PPQ1["Q1: Beyond delivery, what else moves the score:<br/>price, freight ratio, product weight and size,<br/>photo count, description length, or number of items?"]
+    PP --> PPQ2["Q2: Which product categories carry high revenue<br/>and poor satisfaction?"]
+
+    style P fill:#111827,color:#ffffff,stroke:#111827,stroke-width:3px
+    style D fill:#0891b2,color:#ffffff,stroke:#0891b2,stroke-width:2px
+    style DQ1 fill:#ecfeff,color:#164e63,stroke:#0891b2
+    style DQ2 fill:#ecfeff,color:#164e63,stroke:#0891b2
+    style R fill:#2563eb,color:#ffffff,stroke:#2563eb,stroke-width:2px
+    style RQ1 fill:#eff6ff,color:#1e3a8a,stroke:#2563eb
+    style RQ2 fill:#eff6ff,color:#1e3a8a,stroke:#2563eb
+    style S fill:#059669,color:#ffffff,stroke:#059669,stroke-width:2px
+    style SQ1 fill:#ecfdf5,color:#064e3b,stroke:#059669
+    style SQ2 fill:#ecfdf5,color:#064e3b,stroke:#059669
+    style B fill:#d97706,color:#ffffff,stroke:#d97706,stroke-width:2px
+    style BQ1 fill:#fffbeb,color:#78350f,stroke:#d97706
+    style BQ2 fill:#fffbeb,color:#78350f,stroke:#d97706
+    style PP fill:#db2777,color:#ffffff,stroke:#db2777,stroke-width:2px
+    style PPQ1 fill:#fdf2f8,color:#831843,stroke:#db2777
+    style PPQ2 fill:#fdf2f8,color:#831843,stroke:#db2777
+
+    linkStyle 0 stroke:#6b7280,stroke-width:3px
+    linkStyle 3 stroke:#6b7280,stroke-width:2px
+    linkStyle 6 stroke:#6b7280,stroke-width:2px
+    linkStyle 9 stroke:#6b7280,stroke-width:2px
+    linkStyle 12 stroke:#6b7280,stroke-width:2px
+    linkStyle 1,2 stroke:#0891b2,stroke-width:2px
+    linkStyle 4,5 stroke:#2563eb,stroke-width:2px
+    linkStyle 7,8 stroke:#059669,stroke-width:2px
+    linkStyle 10,11 stroke:#d97706,stroke-width:2px
+    linkStyle 13,14 stroke:#db2777,stroke-width:2px
+'''
+    mermaid_html = f'''
+    <style>
+        html, body {{ margin: 0; background: #ffffff; }}
+        .mermaid {{ display: flex; justify-content: center; background: #ffffff; padding: 24px 12px; }}
+        .mermaid svg {{ max-width: none; overflow: visible; }}
+    </style>
+    <div class="mermaid">{mermaid_definition}</div>
+    <script type="module">
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({{
+            startOnLoad: true,
+            securityLevel: "loose",
+            theme: "base",
+            flowchart: {{
+                htmlLabels: true,
+                nodeSpacing: 90,
+                rankSpacing: 200,
+                padding: 28,
+            }},
+            themeVariables: {{ fontFamily: "Georgia", fontSize: "20px" }}
+        }});
+    </script>
+    '''
+    components.html(mermaid_html, height=1750, scrolling=True)
+
+
+def render_introduction(df):
+    """Orient the reader around the business problem before the analytical story."""
+    d = reviewed_delivered(df)
+    if d.empty:
+        st.warning("No reviewed delivered orders are available.")
+        return
+
+    st.markdown(
+        '<div class="intro-hero">'
+        '<h1>Can we grow without breaking customer trust?</h1>'
+        '<p class="intro-problem"><strong>Problem statement:</strong> The marketplace is growing, but poor customer experiences can quietly erode repeat demand. '
+        'We need to identify where dissatisfaction starts, how much is operationally avoidable, and where leadership should intervene first.</p>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
+
+    st.markdown('<div class="intro-section-label">IMPORTANT DATA SIGNALS</div>', unsafe_allow_html=True)
+    monthly = d.assign(Month=d["order_purchase_timestamp"].dt.to_period("M").astype(str)).groupby("Month").agg(
+        Orders=("order_id", "count"),
+        Negative_rate=("is_negative", "mean"),
+        Unhappy_orders=("is_negative", "sum"),
+        Late_rate=("is_late", "mean"),
+        Revenue=("total_price", "sum"),
+    ).reset_index()
+    monthly["Unhappy customer rate"] = monthly.pop("Negative_rate") * 100
+    monthly["Orders delivered late"] = monthly.pop("Late_rate") * 100
+    monthly["Revenue (R$)"] = monthly.pop("Revenue")
+    monthly = monthly[monthly["Orders"] >= 100]
+    overall_unhappy_rate = d["is_negative"].mean() * 100
+    late = d[d["is_late"] == True]
+    on_time = d[d["is_late"] == False]
+    on_time_unhappy = on_time["is_negative"].mean() * 100
+    late_unhappy = late["is_negative"].mean() * 100
+    date_start = d["order_purchase_timestamp"].min().strftime("%b %Y")
+    date_end = d["order_purchase_timestamp"].max().strftime("%b %Y")
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Analysis period", f"{date_start} - {date_end}")
+    c2.metric("Reviewed delivered orders", f"{len(d):,}")
+    c3.metric("Unhappy customer rate", f"{overall_unhappy_rate:.1f}%", help="Share of reviewed orders rated 1 or 2 stars")
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Late-order dissatisfaction impact", f"{late_unhappy / on_time_unhappy:.1f}x", help="Unhappy-review rate when late divided by the unhappy-review rate when on time")
+    c2.metric("Unhappy when delivered on time", f"{on_time_unhappy:.1f}%")
+    c3.metric("Unhappy when delivered late", f"{late_unhappy:.1f}%")
+
+    st.markdown("**Customer dissatisfaction and revenue trend**")
+    dissatisfaction_bars = alt.Chart(monthly).mark_bar(color="#e11d48", opacity=0.82).encode(
+        x=alt.X("Month:O", title="Month"),
+        y=alt.Y("Unhappy customer rate:Q", title="Unhappy customers (%)", scale=alt.Scale(zero=True)),
+        tooltip=[
+            alt.Tooltip("Month:O", title="Month"),
+            alt.Tooltip("Unhappy customer rate:Q", title="Unhappy customers (1-2 stars)", format=".1f"),
+            alt.Tooltip("Unhappy_orders:Q", title="Unhappy reviews", format=",.0f"),
+            alt.Tooltip("Orders:Q", title="Reviewed orders", format=",.0f"),
+        ],
+    )
+    revenue_line = alt.Chart(monthly).mark_line(point=True, color="#059669", strokeWidth=3).encode(
+        x=alt.X("Month:O", title="Month"),
+        y=alt.Y("Revenue (R$):Q", title="Revenue (R$)", axis=alt.Axis(orient="right"), scale=alt.Scale(zero=False)),
+        tooltip=[
+            alt.Tooltip("Month:O", title="Month"),
+            alt.Tooltip("Revenue (R$):Q", title="Revenue", format=",.0f"),
+            alt.Tooltip("Orders:Q", title="Reviewed orders", format=",.0f"),
+        ],
+    )
+    st.markdown(
+        '<div style="display:flex;gap:22px;align-items:center;margin:2px 0 6px;color:#475569;font-size:12px;">'
+        '<span><span style="display:inline-block;width:10px;height:10px;background:#e11d48;margin-right:6px;"></span>Customer dissatisfaction: 1-2 star reviews</span>'
+        '<span><span style="display:inline-block;width:10px;height:3px;background:#059669;margin-right:6px;vertical-align:middle;"></span>Revenue</span>'
+        '</div>',
+        unsafe_allow_html=True,
+    )
+    show(
+        alt.layer(dissatisfaction_bars, revenue_line)
+        .resolve_scale(y="independent")
+        .properties(height=300)
+    )
+    st.caption(
+        "The left axis shows the percentage of reviewed orders rated 1-2 stars; the right axis shows monthly revenue. "
+        "This keeps the two measures visible together without treating percentage and currency as the same scale."
+    )
+    if len(monthly) >= 2:
+        first_month = monthly.iloc[0]
+        latest_month = monthly.iloc[-1]
+        revenue_change = (latest_month["Revenue (R$)"] / first_month["Revenue (R$)"] - 1) * 100
+        dissatisfaction_change = latest_month["Unhappy customer rate"] - first_month["Unhappy customer rate"]
+        trend_relationship = "moved in the same direction" if revenue_change * dissatisfaction_change >= 0 else "moved in opposite directions"
+        st.markdown(
+            f'<div class="intro-signal"><strong>Trend:</strong> from {first_month["Month"]} to {latest_month["Month"]}, '
+            f'revenue changed by {revenue_change:+.1f}% while the share of unhappy customers changed by '
+            f'{dissatisfaction_change:+.1f} percentage points. The two measures {trend_relationship}; '
+            'this describes the pattern in the data, not a causal effect.</div>',
+            unsafe_allow_html=True,
+        )
+
+        st.markdown("**Quarterly revenue growth versus dissatisfaction growth**")
+        quarterly = d.assign(
+            Quarter=d["order_purchase_timestamp"].dt.to_period("Q").astype(str)
+        ).groupby("Quarter").agg(
+            Orders=("order_id", "count"),
+            Revenue=("total_price", "sum"),
+            Unhappy_rate=("is_negative", "mean"),
+        ).reset_index().sort_values("Quarter")
+        quarterly["Unhappy customer rate"] = quarterly.pop("Unhappy_rate") * 100
+        quarterly["Unhappy review count"] = quarterly["Unhappy_rate"] if "Unhappy_rate" in quarterly else np.nan
+        quarterly["Revenue growth vs previous quarter"] = quarterly["Revenue"].pct_change() * 100
+        quarterly["Unhappy review count growth vs previous quarter"] = quarterly["Unhappy review count"].pct_change() * 100
+        quarterly = quarterly.dropna(subset=["Revenue growth vs previous quarter", "Unhappy review count growth vs previous quarter"])
+
+        revenue_growth = alt.Chart(quarterly).mark_line(point=True, color="#059669", strokeWidth=3).encode(
+            x=alt.X("Quarter:O", title="Quarter"),
+            y=alt.Y("Revenue growth vs previous quarter:Q", title="Revenue growth (%)"),
+            tooltip=[
+                alt.Tooltip("Quarter:O", title="Quarter"),
+                alt.Tooltip("Revenue growth vs previous quarter:Q", title="Revenue change", format="+.1f"),
+                alt.Tooltip("Revenue:Q", title="Revenue", format=",.0f"),
+                alt.Tooltip("Orders:Q", title="Reviewed orders", format=",.0f"),
+            ],
+        )
+        dissatisfaction_change = alt.Chart(quarterly).mark_line(point=True, color="#e11d48", strokeWidth=3).encode(
+            x=alt.X("Quarter:O", title="Quarter"),
+            y=alt.Y("Unhappy review count growth vs previous quarter:Q", title="Quarter-over-quarter growth (%)"),
+            tooltip=[
+                alt.Tooltip("Quarter:O", title="Quarter"),
+                alt.Tooltip("Unhappy review count growth vs previous quarter:Q", title="Unhappy-review count growth", format="+.1f"),
+                alt.Tooltip("Unhappy review count:Q", title="Unhappy reviews", format=",.0f"),
+                alt.Tooltip("Unhappy customer rate:Q", title="Unhappy customers", format=".1f"),
+            ],
+        )
+        show(
+            alt.layer(dissatisfaction_change, revenue_growth)
+            .resolve_scale(y="independent")
+            .properties(height=340)
+        )
+        st.caption(
+            "Both lines show quarter-over-quarter percentage change. Green is revenue growth; red is growth in the count of 1-2-star reviews. "
+            "Values above zero mean growth, while values below zero mean a decrease."
+        )
+
+    st.markdown('<div class="intro-section-label">THE INVESTIGATION FLOW</div>', unsafe_allow_html=True)
+    render_mermaid_mind_map()
 
 
 # --------------------------------------------------------------------------
@@ -780,17 +1210,18 @@ def render_dashboard():
     )
 
     tab_labels = [
-        "Trust & Growth", "Promise vs Speed", "Multi-Seller Blind Spot",
-        "Seller Damage", "Route Risk", "Product Risk", "Recommendations",
+        "Introduction", "Delivery performance", "Regional logistics",
+        "Seller performance", "Seller behaviour drivers", "Product and pricing",
+        "Recommendations",
     ]
     selected = st.segmented_control("Story", tab_labels, default=tab_labels[0], label_visibility="collapsed", width="stretch")
 
     renderers = {
-        tab_labels[0]: render_overview,
+        tab_labels[0]: render_introduction,
         tab_labels[1]: render_delivery,
-        tab_labels[2]: render_multi_seller,
+        tab_labels[2]: render_regions,
         tab_labels[3]: render_sellers,
-        tab_labels[4]: render_regions,
+        tab_labels[4]: render_recommendations,
         tab_labels[5]: render_products,
         tab_labels[6]: render_recommendations,
     }
